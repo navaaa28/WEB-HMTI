@@ -16,14 +16,17 @@
     
     <?php echo $__env->make('layouts.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    <main class="container mx-auto p-4">
-        <?php echo $__env->yieldContent('content'); ?>
+    <main class="w-full">
         <?php if(session('success')): ?>
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
-        <?php echo e(session('success')); ?>
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
+                    <?php echo e(session('success')); ?>
 
-    </div>
-<?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
 
     <?php echo $__env->make('layouts.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>

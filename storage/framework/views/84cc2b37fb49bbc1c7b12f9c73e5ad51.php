@@ -168,6 +168,9 @@
                                required>
                     </div>
 
+                    <!-- Hidden input untuk payment_method_id -->
+                    <input type="hidden" name="payment_method_id" id="selected_payment_method_id">
+
                     <button type="submit" 
                             class="w-full bg-indigo-900 text-white px-6 py-3 rounded-lg hover:bg-purple-800 transition duration-300">
                         Bayar
@@ -178,6 +181,7 @@
     </div>
 </div>
 
+<!-- JavaScript untuk Menampilkan Detail Pembayaran -->
 <script>
     function updatePaymentDetails() {
         const select = document.getElementById("payment_method");
@@ -186,6 +190,9 @@
         const accountNumber = selectedOption.getAttribute("data-account-number");
         const accountName = selectedOption.getAttribute("data-account-name");
         const qrCodeUrl = selectedOption.getAttribute("data-qrcode");
+
+        // Set nilai payment_method_id ke hidden input
+        document.getElementById("selected_payment_method_id").value = selectedOption.value;
 
         const paymentDetails = document.getElementById("payment_details");
         const qrCodeContainer = document.getElementById("qr_code_container");

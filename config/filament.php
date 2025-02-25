@@ -25,17 +25,5 @@ return [
     // Halaman bawaan Filament
     \Filament\Pages\Dashboard::class,
 
-    // Halaman custom Anda
-    \App\Filament\Pages\VerifyQRCode::class,
-],
-'navigation' => [
-    'groups' => [
-        [
-            'label' => 'Verifikasi',
-            'items' => [
-                \App\Filament\Pages\VerifyQRCode::class,
-            ],
-        ],
-    ],
 ],
 ];

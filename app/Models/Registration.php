@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Registration extends Model
 {
-    protected $fillable = ['user_id', 'event_id', 'name', 'email', 'payment_proof', 'status'];
+    protected $fillable = ['user_id', 'event_id', 'name', 'email', 'payment_proof', 'status', 'payment_method_id'];
 
     public function user()
     {

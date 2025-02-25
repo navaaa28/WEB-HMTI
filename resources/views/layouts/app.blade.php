@@ -16,13 +16,16 @@
     
     @include('layouts.header')
 
-    <main class="container mx-auto p-4">
-        @yield('content')
+    <main class="w-full">
         @if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
-        {{ session('success') }}
-    </div>
-@endif
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+        
+        @yield('content')
     </main>
 
     @include('layouts.footer')

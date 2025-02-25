@@ -11,6 +11,7 @@ use App\Models\Payment;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {
@@ -31,39 +32,49 @@ class EventController extends Controller
     // Proses penyimpanan pembayaran
     public function storePayment(Request $request, Event $event)
     {
-        // Validasi file bukti pembayaran
-        $request->validate([
-            'payment_proof' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Maksimal 2MB
-            'payment_method_id' => 'required|exists:payment_methods,id',
-        ]);
+        try {
+            // Debugging: Cek data yang dikirim
+            Log::info('Request Data:', $request->all());
 
-        // Cek apakah user sudah memiliki pendaftaran yang masih dalam proses
-        $existingRegistration = Registration::where('user_id', auth()->id())
-            ->where('event_id', $event->id)
-            ->whereIn('status', ['pending', 'approved'])
-            ->first();
-
-        if ($existingRegistration) {
-            return redirect()->back()->with('error', 'Anda sudah melakukan pembayaran atau masih dalam proses.');
-        }
-
-        // Simpan file bukti pembayaran
-        if ($request->hasFile('payment_proof')) {
-            $path = $request->file('payment_proof')->store('payments', 'public');
-
-            // Simpan ke database
-            Registration::create([
-                'user_id' => auth()->id(),
-                'event_id' => $event->id,
-                'payment_method_id' => $request->payment_method_id,
-                'payment_proof' => $path,
-                'status' => 'pending', // Status awal
+            // Validasi file bukti pembayaran
+            $request->validate([
+                'payment_proof' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Maksimal 2MB
+                'payment_method_id' => 'required|exists:payment_methods,id',
             ]);
 
-            return redirect()->route('events.register', $event->id)->with('success', 'Pembayaran berhasil dikirim! Tunggu konfirmasi panitia.');
-        }
+            // Cek apakah user sudah memiliki pendaftaran yang masih dalam proses
+            $existingRegistration = Registration::where('user_id', auth()->id())
+                ->where('event_id', $event->id)
+                ->whereIn('status', ['pending', 'approved'])
+                ->first();
 
-        return redirect()->back()->with('error', 'Gagal mengunggah bukti pembayaran.');
+            if ($existingRegistration) {
+                return redirect()->back()->with('error', 'Anda sudah melakukan pembayaran atau masih dalam proses.');
+            }
+
+            // Simpan file bukti pembayaran
+            if ($request->hasFile('payment_proof')) {
+                $path = $request->file('payment_proof')->store('payments', 'public');
+
+                // Simpan ke database
+                $registration = Registration::create([
+                    'user_id' => auth()->id(),
+                    'event_id' => $event->id,
+                    'payment_method_id' => $request->payment_method_id,
+                    'payment_proof' => $path,
+                    'status' => 'pending', // Status awal
+                ]);
+
+                Log::info('Registration created:', $registration->toArray());
+
+                return redirect()->route('events.register', $event->id)->with('success', 'Pembayaran berhasil dikirim! Tunggu konfirmasi panitia.');
+            }
+
+            return redirect()->back()->with('error', 'Gagal mengunggah bukti pembayaran.');
+        } catch (\Exception $e) {
+            Log::error('Error in storePayment:', ['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memproses pembayaran.');
+        }
     }
 
     // Menampilkan form pendaftaran untuk event

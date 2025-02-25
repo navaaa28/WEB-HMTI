@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
         <!-- Hero Section -->
-        <section class="bg-indigo-900 text-white py-10 md:py-102 text-center" data-aos="fade-down">
-    <div class="container mx-auto px-4 flex flex-col items-center">
+        <section class="bg-indigo-900 text-white py-16 -mt-4 text-center" data-aos="fade-down">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
         <div class="mb-4">
             <img src="{{ asset('storage/images/logo.png') }}" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110">
         </div>
@@ -21,23 +21,25 @@
 </section>
 
     <!-- About Section -->
-    <section id="salam" class="container mx-auto p-8 md:p-16 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12" data-aos="fade-up">
-        <div class="text-center md:text-left" data-aos="fade-left">
-            <h2 class="text-4xl md:text-6xl font-bold text-indigo-900 font-serif">Salam</h2>
-            <h2 class="text-4xl md:text-6xl font-bold text-indigo-900 font-serif" data-aos-delay="100">Unity</h2>
-        </div>
-        
-        <div class="max-w-xl text-center md:text-left" data-aos="fade-right" data-aos-delay="200">
-            <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">
-                Kami merupakan sebuah organisasi yang tergabung dalam Himpunan Mahasiswa Teknik Industri Universitas Teknologi Bandung.
-                Kami adalah pengemban, penampung, dan eksekutor aspirasi Mahasiswa Teknik Industri.
-            </p>
+    <section id="salam" class="bg-white py-16" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
+            <div class="text-center md:text-left" data-aos="fade-left">
+                <h2 class="text-4xl md:text-6xl font-bold text-indigo-900 font-serif">Salam</h2>
+                <h2 class="text-4xl md:text-6xl font-bold text-indigo-900 font-serif" data-aos-delay="100">Unity</h2>
+            </div>
+            
+            <div class="max-w-xl text-center md:text-left" data-aos="fade-right" data-aos-delay="200">
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">
+                    Kami merupakan sebuah organisasi yang tergabung dalam Himpunan Mahasiswa Teknik Industri Universitas Teknologi Bandung.
+                    Kami adalah pengemban, penampung, dan eksekutor aspirasi Mahasiswa Teknik Industri.
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- Visi & Misi Section -->
-    <section class="my-8 md:my-16 bg-gray-50 py-8 md:py-16" data-aos="fade-up">
-        <div class="container mx-auto p-4 md:p-8">
+    <section class="bg-gray-50 py-16" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Visi & Misi</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <!-- Visi -->
@@ -63,9 +65,9 @@
     </section>
 
 <!-- Events Section -->
-<section id="events" class="bg-gray-50 py-8 md:py-16" data-aos="fade-up">
-    <div class="container mx-auto p-4 md:p-8">
-        <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Acara Terbaru</h2>
+<section id="events" class="bg-white py-24" data-aos="fade-up">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center bg-gradient-to-br from-indigo-900 to-purple-800 bg-clip-text text-transparent mb-12 font-serif" data-aos="fade-down">Acara Terbaru</h2>
         <div class="swiper-container overflow-hidden">
             <div class="swiper-wrapper">
                 @forelse ($events as $event)
@@ -120,51 +122,53 @@
                 @endforelse
             </div>
             <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination mt-8"></div>
         </div>
     </div>
 </section>
 
 <!-- Struktur Organisasi Section -->
-<section id="struktur" class="container mx-auto p-4 md:p-8 my-8 md:my-16 bg-white" data-aos="fade-up">
-    <div class="text-center">
-        <h2 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
-        <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">HIMPUNAN MAHASISWA TEKNIK INDUSTRI</h3>
-        <h4 class="text-md md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
-        <p class="text-sm md:text-base text-indigo-900 mb-4 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
-    </div>
-
-    <!-- Swiper Container -->
-    <div class="swiper-container overflow-hidden">
-        <div class="swiper-wrapper">
-            @foreach ($anggotas as $anggota)
-                @if (in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']))
-                    <div class="swiper-slide">
-                        <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg text-center mx-2 md:mx-0 hover:shadow-xl transition-shadow duration-300">
-                            <img src="{{ $anggota->foto }}" alt="Foto {{ $anggota->nama }}" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
-                            <h3 class="text-lg md:text-xl font-bold font-serif">{{ $anggota->nama }}</h3>
-                            <p class="text-sm text-gray-600 font-light">{{ $anggota->jabatan }}</p>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
+<section id="struktur" class="bg-gray-50 py-16" data-aos="fade-up">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center">
+            <h2 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
+            <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">HIMPUNAN MAHASISWA TEKNIK INDUSTRI</h3>
+            <h4 class="text-md md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
+            <p class="text-sm md:text-base text-indigo-900 mb-4 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-    </div>
 
-    <!-- Tombol Lihat Seluruh Anggota -->
-    <div class="text-right mt-8">
-        <a href="{{ route('anggota.index') }}" class="bg-indigo-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-800 transition duration-300">
-            Lihat Seluruh Anggota
-        </a>
+        <!-- Swiper Container -->
+        <div class="swiper-container overflow-hidden">
+            <div class="swiper-wrapper">
+                @foreach ($anggotas as $anggota)
+                    @if (in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']))
+                        <div class="swiper-slide">
+                            <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg text-center mx-2 md:mx-0 hover:shadow-xl transition-shadow duration-300">
+                                <img src="{{ $anggota->foto }}" alt="Foto {{ $anggota->nama }}" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                                <h3 class="text-lg md:text-xl font-bold font-serif">{{ $anggota->nama }}</h3>
+                                <p class="text-sm text-gray-600 font-light">{{ $anggota->jabatan }}</p>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Tombol Lihat Seluruh Anggota -->
+        <div class="text-right mt-8">
+            <a href="{{ route('anggota.index') }}" class="bg-indigo-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-800 transition duration-300">
+                Lihat Seluruh Anggota
+            </a>
+        </div>
     </div>
 </section>
 
 
     <!-- Tentang Kami -->
-    <section id='about' class="my-8 md:my-16 bg-gray-50 py-8 md:py-16" data-aos="fade-up">
-        <div class="container mx-auto p-4 md:p-8">
+    <section id='about' class="bg-white py-16" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Tentang Kami</h2>
             <div class="max-w-3xl mx-auto text-center">
                 <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">
