@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.event-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+/* Pastikan card memiliki latar belakang putih dan tidak ada overflow */
+.swiper-slide {
+    background: transparent; /* Hilangkan latar belakang abu-abu */
+    padding: 0; /* Hilangkan padding default */
+    margin: 0; /* Hilangkan margin default */
+}
+
+/* Atur card agar memiliki efek hover dan tampilan yang konsisten */
+.swiper-slide .bg-white {
+    border: 1px solid #e5e7eb; /* Tambahkan border untuk kejelasan */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-slide .bg-white:hover {
+    transform: translateY(-5px); /* Efek hover */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Di resources/css/app.css atau file CSS terpisah */
+.sidebar {
+    position: fixed;
+    top: 64px; /* Sesuaikan dengan tinggi header */
+    left: 0;
+    width: 16rem; /* Lebar sidebar */
+    height: calc(100vh - 64px); /* Tinggi sidebar (tinggi layar - tinggi header) */
+    overflow-y: auto; /* Scroll jika konten melebihi tinggi sidebar */
+    background-color: white; /* Warna latar belakang */
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1); /* Bayangan sidebar */
+    z-index: 40; /* Pastikan sidebar berada di atas konten */
+}
+.department h3::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0c0"; /* Contoh ikon */
+    margin-right: 10px;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}

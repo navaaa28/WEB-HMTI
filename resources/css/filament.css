@@ -1,0 +1,36 @@
+:root {
+    --primary-50: #eef2ff;
+    --primary-100: #e0e7ff;
+    --primary-200: #c7d2fe;
+    --primary-300: #a5b4fc;
+    --primary-400: #818cf8;
+    --primary-500: #6366f1; /* Warna utama (Indigo) */
+    --primary-600: #4f46e5;
+    --primary-700: #4338ca;
+    --primary-800: #3730a3;
+    --primary-900: #312e81;
+}
+
+/* Mengubah warna tombol */
+button {
+    background-color: var(--primary-500) !important;
+    border-color: var(--primary-600) !important;
+    color: white !important;
+}
+
+button:hover {
+    background-color: var(--primary-600) !important;
+}
+
+/* Mengubah warna sidebar */
+.filament-sidebar {
+    background-color: var(--primary-800) !important;
+}
+
+.filament-sidebar a {
+    color: white !important;
+}
+
+.filament-sidebar a:hover {
+    background-color: var(--primary-600) !important;
+}
