@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <!-- Hero Section -->
-    <section class="bg-indigo-900 text-white py-20 md:py-32 -mt-4" data-aos="fade-down">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
+    <section class="relative py-20 md:py-32 -mt-4" data-aos="fade-down">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="<?php echo e(asset('storage/images/hero-bg.jpeg')); ?>" alt="Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-indigo-900/75"></div> <!-- Overlay dengan opacity -->
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
             <div class="mb-4">
-                <img src="<?php echo e(asset('storage/images/logo.png')); ?>" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110">
+                <img src="<?php echo e(asset('storage/images/logo.png')); ?>" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110 ring-4 ring-white/50">
             </div>
-            <h1 class="text-3xl md:text-5xl font-bold font-serif">Himpunan Mahasiswa Teknik Industri</h1>
-            <h2 class="text-xl md:text-3xl font-semibold mt-2">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
-            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
+            <h1 class="text-3xl md:text-5xl font-bold font-serif text-white drop-shadow-lg">Himpunan Mahasiswa Teknik Industri</h1>
+            <h2 class="text-xl md:text-3xl font-semibold mt-2 text-white/90 drop-shadow-lg">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
+            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light text-white/80 drop-shadow">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
         </div>
     </section>
 
@@ -164,6 +171,34 @@
             </div>
         </div>
     </section>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <!-- Section Materi Perkuliahan -->
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-4xl font-bold text-purple-900 mb-2">Hello Engineers!</h3>
+                            <h2 class="text-5xl font-bold text-purple-900 leading-tight">
+                                MATERI<br>
+                                PERKULIAHAN<br>
+                                JARAK JAUH
+                            </h2>
+                        </div>
+                        
+                        <div class="flex flex-col items-start">
+                            <p class="text-gray-600 mb-4 max-w-md">
+                                Berikut adalah kumpulan Materi Mata Kuliah dari setiap kelasnya dan setiap angkatannya selama masa Perkuliahan Jarak Jauh
+                            </p>
+                            <a href="<?php echo e(route('materials.index')); ?>" 
+                               class="inline-flex items-center px-6 py-3 bg-purple-900 border border-transparent rounded-md font-semibold text-white hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
+                                UNDUH MATERI
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     <!-- Tentang Kami -->
     <section id='about' class="bg-white py-16" data-aos="fade-up">

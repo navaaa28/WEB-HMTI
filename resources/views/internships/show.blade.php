@@ -1,0 +1,61 @@
+@extends('layouts.app')
+
+@section('content')
+<script src="//unpkg.com/alpinejs" defer></script>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="p-6">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ $internship->title }}</h1>
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-700">{{ $internship->company }}</h2>
+                    <p class="text-gray-600">{{ $internship->location }}</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Periode Magang</h3>
+                        <p>{{ $internship->start_date->format('d M Y') }} - {{ $internship->end_date->format('d M Y') }}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Deadline Pendaftaran</h3>
+                        <p>{{ $internship->deadline->format('d M Y') }}</p>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none mb-8">
+                    <h3 class="text-lg font-semibold mb-2">Deskripsi</h3>
+                    {!! $internship->description !!}
+                </div>
+
+                <div class="prose max-w-none mb-8">
+                    <h3 class="text-lg font-semibold mb-2">Persyaratan</h3>
+                    {!! $internship->requirements !!}
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold mb-2">Benefits</h3>
+                    <p>{{ $internship->benefits }}</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Kontak</h3>
+                    <div class="space-y-2">
+                        <p><span class="font-medium">PIC:</span> {{ $internship->contact_person }}</p>
+                        <p><span class="font-medium">Email:</span> {{ $internship->contact_email }}</p>
+                        <p><span class="font-medium">Telepon:</span> {{ $internship->contact_phone }}</p>
+                    </div>
+                </div>
+
+                @if($internship->apply_url)
+                    <div class="mt-8">
+                        <a href="{{ $internship->apply_url }}" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 border border-transparent rounded-md font-semibold text-white text-sm uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
+                            Daftar Sekarang
+                        </a>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

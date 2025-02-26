@@ -20,6 +20,9 @@
                     <a href="#about" class="px-3 py-2 text-gray-700 hover:text-indigo-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-900 after:transition-all">
                         Tentang
                     </a>
+                    <a href="{{ route('internships') }}" class="px-3 py-2 text-gray-700 hover:text-indigo-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-900 after:transition-all {{ request()->routeIs('internships') ? 'text-indigo-900 after:w-full' : '' }}">
+                        Program Magang
+                    </a>
                     <a href="{{ route('login') }}" class="px-3 py-2 text-gray-700 hover:text-indigo-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-900 after:transition-all">
                         Masuk
                     </a>
@@ -29,6 +32,9 @@
                 @else
                     <a href="{{ route('dashboard') }}" class="px-3 py-2 text-gray-700 hover:text-indigo-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-900 after:transition-all {{ request()->routeIs('dashboard') ? 'text-indigo-900 after:w-full' : '' }}">
                         Dashboard
+                    </a>
+                    <a href="{{ route('internships') }}" class="px-3 py-2 text-gray-700 hover:text-indigo-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-900 after:transition-all {{ request()->routeIs('internships') ? 'text-indigo-900 after:w-full' : '' }}">
+                        Program Magang
                     </a>
                     <a href="#events" class="px-3 py-2 text-gray-700 hover:text-indigo-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-indigo-900 after:transition-all">
                         Acara
@@ -96,6 +102,9 @@
                     <a href="#about" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
                         Tentang
                     </a>
+                    <a href="{{ route('internships') }}" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
+                        Program Magang
+                    </a>
                     <a href="{{ route('login') }}" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
                         Masuk
                     </a>
@@ -106,11 +115,11 @@
                     <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
                         Dashboard
                     </a>
+                    <a href="{{ route('internships') }}" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
+                        Program Magang
+                    </a>
                     <a href="#events" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
                         Acara
-                    </a>
-                    <a href="{{ route('aspirasi.create') }}" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
-                        SUARAKAN ASPIRASIMU!
                     </a>
                     <a href="{{ route('registrations.index') }}" class="block px-3 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-900 rounded-lg transition-all font-medium">
                         Registrasi Saya

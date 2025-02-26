@@ -13,6 +13,8 @@ use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\AspirasiController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\InternshipController;
+use App\Http\Controllers\MaterialController;
 use App\Filament\Pages\VerifyTicket;
 use App\Models\Ticket;
 
@@ -23,6 +25,13 @@ Route::get('/midtrans/approve/{orderId}', [MidtransController::class, 'approveTr
 Route::post('/verify-ticket', [TicketController::class, 'verifyTicket'])
     ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
     Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+Route::get('/internships', [InternshipController::class, 'index'])->name('internships');
+Route::get('/internships/{internship}', [InternshipController::class, 'show'])->name('internships.show');
+Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+Route::get('/materials/{material}/download', [MaterialController::class, 'download'])->name('materials.download');
+
+
+    
     
 
 // Halaman dashboard yang diproteksi

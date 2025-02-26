@@ -65,18 +65,38 @@ class EventResource extends Resource
                     '0' => 'danger',
                 })
                 ->label('Status Pendaftaran'),
-                Tables\Columns\ImageColumn::make('photo')
+            Tables\Columns\TextColumn::make('price')
+                ->badge()
+                ->color(fn ($record): string => $record->price > 0 ? 'warning' : 'success')
+                ->formatStateUsing(fn ($record): string => $record->price > 0 ? 'BERBAYAR' : 'GRATIS'),
+            Tables\Columns\TextColumn::make('registrations_count')
+                ->label('Jumlah Pendaftar')
+                ->badge()
+                ->alignCenter()
+                ->counts('registrations'),
+            Tables\Columns\ImageColumn::make('photo')
                 ->label('Foto Acara')
                 ->width(50)
                 ->height(50)
                 ->getStateUsing(fn ($record) => asset('storage/' . $record->photo)),
-                Tables\Columns\BooleanColumn::make('is_visible')
+            Tables\Columns\BooleanColumn::make('is_visible')
                 ->label('Tampilkan'),
-            
-                
         ])
         ->filters([
-            //
+            Tables\Filters\SelectFilter::make('payment_status')
+                ->label('Status Pembayaran')
+                ->options([
+                    'paid' => 'Berbayar',
+                    'free' => 'Gratis',
+                ])
+                ->query(function (Builder $query, array $data) {
+                    if (isset($data['value'])) {
+                        return $query->when($data['value'] === 'paid', 
+                            fn ($q) => $q->where('price', '>', 0),
+                            fn ($q) => $q->where('price', 0)
+                        );
+                    }
+                })
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

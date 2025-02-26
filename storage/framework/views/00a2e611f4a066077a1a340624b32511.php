@@ -166,6 +166,33 @@
         </div>
     </div>
 </section>
+<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <!-- Section Materi Perkuliahan -->
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-4xl font-bold text-purple-900 mb-2">Hello Engineers!</h3>
+                            <h2 class="text-5xl font-bold text-purple-900 leading-tight">
+                                MATERI<br>
+                                PERKULIAHAN<br>
+                                JARAK JAUH
+                            </h2>
+                        </div>
+                        
+                        <div class="flex flex-col items-start">
+                            <p class="text-gray-600 mb-4 max-w-md">
+                                Berikut adalah kumpulan Materi Mata Kuliah dari setiap kelasnya dan setiap angkatannya selama masa Perkuliahan Jarak Jauh
+                            </p>
+                            <a href="<?php echo e(route('materials.index')); ?>" 
+                               class="inline-flex items-center px-6 py-3 bg-purple-900 border border-transparent rounded-md font-semibold text-white hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
+                                UNDUH MATERI
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
     <!-- Tentang Kami -->
