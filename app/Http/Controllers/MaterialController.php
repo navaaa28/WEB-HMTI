@@ -29,33 +29,43 @@ class MaterialController extends Controller
             'exists' => Storage::exists($material->file_path)
         ]);
 
-        // Cek apakah file ada di storage
-        if (!Storage::exists($material->file_path)) {
-            // Coba cek di public disk
-            if (!Storage::disk('public')->exists($material->file_path)) {
-                abort(404, 'File tidak ditemukan.');
-            }
-            
-            // Jika file ada di public disk, gunakan itu
-            return Storage::disk('public')->download(
-                $material->file_path,
-                $material->file_name,
-                [
-                    'Content-Type' => $this->getContentType($material->file_type),
-                    'Content-Disposition' => 'attachment; filename="' . $material->file_name . '"'
-                ]
-            );
+        $extension = strtolower($material->file_type);
+        $filePath = storage_path('app/public/' . $material->file_path);
+
+        // Cek apakah file ada
+        if (!file_exists($filePath)) {
+            abort(404, 'File tidak ditemukan.');
         }
 
-        // Jika file ada di default disk
-        return Storage::download(
-            $material->file_path,
-            $material->file_name,
-            [
-                'Content-Type' => $this->getContentType($material->file_type),
-                'Content-Disposition' => 'attachment; filename="' . $material->file_name . '"'
-            ]
-        );
+        // Set header berdasarkan tipe file
+        $headers = [
+            'Content-Type' => $this->getContentType($extension),
+            'Content-Disposition' => 'attachment; filename="' . $material->file_name . '"',
+            'Cache-Control' => 'private, no-transform, no-store, must-revalidate',
+            'Pragma' => 'no-cache',
+            'Expires' => '0'
+        ];
+
+        // Untuk file binary (docx, xlsx) gunakan readfile langsung
+        if (in_array($extension, ['docx', 'xlsx'])) {
+            ob_end_clean(); // Bersihkan output buffer
+            
+            // Set semua header
+            foreach ($headers as $key => $value) {
+                header("$key: $value");
+            }
+            
+            // Set header tambahan untuk binary
+            header('Content-Length: ' . filesize($filePath));
+            header('Accept-Ranges: bytes');
+            
+            // Baca dan kirim file
+            readfile($filePath);
+            exit;
+        }
+
+        // Untuk file lain (PDF, dll) gunakan Storage::download
+        return Storage::disk('public')->download($material->file_path, $material->file_name, $headers);
     }
 
     private function getContentType(string $extension): string

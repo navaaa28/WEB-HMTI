@@ -92,9 +92,8 @@ class RegistrationResource extends Resource
                 ->size(100)
                 ->circular(false)
                 ->square()
-                ->url(fn ($record) => $record->payment_proof ? asset($record->payment_proof) : null)
-                ->openUrlInNewTab()
-                ->visible(fn ($record) => $record?->event?->price > 0),
+                ->url(fn ($record) => $record->payment_proof ? asset('storage/' . $record->payment_proof) : null)
+                ->openUrlInNewTab(),
 
             \Filament\Tables\Columns\BadgeColumn::make('status')
                 ->colors([

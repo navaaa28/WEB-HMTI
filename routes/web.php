@@ -31,9 +31,6 @@ Route::get('/materials', [MaterialController::class, 'index'])->name('materials.
 Route::get('/materials/{material}/download', [MaterialController::class, 'download'])->name('materials.download');
 
 
-    
-    
-
 // Halaman dashboard yang diproteksi
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

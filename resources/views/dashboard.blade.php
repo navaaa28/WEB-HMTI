@@ -214,7 +214,7 @@
                     <li>Departemen Penelitian dan Pengembangan (LITBANG)</li>
                     <li>Departemen Perhubungan (PERHUB)</li>
                     <li>Departemen Media Komunikasi dan Informasi (MEDKOMINFO)</li>
-                    <li>Departemen Bisnis dan Kemitraan (BISTRA)</li>
+                    <li>Departemen Bisnis dan Kemitraan     (BISTRA)</li>
                 </ul>
             </div>
         </div>

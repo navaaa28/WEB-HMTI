@@ -36,26 +36,39 @@
     </section>
 
     <!-- Visi & Misi Section -->
-    <section class="bg-gray-50 py-16" data-aos="fade-up">
+    <section class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Visi & Misi</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-900 mb-12 font-serif relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-24 after:h-1 after:bg-indigo-900" data-aos="fade-down">Visi & Misi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Visi -->
-                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg" data-aos="fade-right">
-                    <h3 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 md:mb-4 font-serif">Visi</h3>
-                    <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">                        
-                        Menjadikan HMTI UTB sebagai organisasi yang komunikatif,
-                        berintegritas, dan profesional dalam rangka mewujudkan
-                        aspirasi mahasiswa Teknik Industri UTB.
+                <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-aos="fade-right">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-eye text-2xl text-indigo-900"></i>
+                        <h3 class="text-2xl font-bold text-indigo-900 font-serif">Visi</h3>
+                    </div>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Menjadikan HMTI UTB yang Komunikatif, Dinamis, dan Berintegritas sebagai penggerak dalam mewujudkan aspirasi Mahasiswa Teknik Industri UTB.
                     </p>
                 </div>
                 <!-- Misi -->
-                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg" data-aos="fade-left">
-                    <h3 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 md:mb-4 font-serif">Misi</h3>
-                    <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed font-light">
-                        <li>Meningkatkan komunikasi dalam ranah internal maupun eksternal.</li>
-                        <li>Terbentuknya kerjasama yang disiplin dan profesional.</li>
-                        <li>Menciptakan aktivitas organisasi yang sesuai dengan kebutuhan perangkat.</li>
+                <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-aos="fade-left">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-bullseye text-2xl text-indigo-900"></i>
+                        <h3 class="text-2xl font-bold text-indigo-900 font-serif">Misi</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
+                            <span class="text-gray-700 text-lg leading-relaxed">Menciptakan lingkungan kerja yang disiplin, bertanggung jawab, dan profesional</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
+                            <span class="text-gray-700 text-lg leading-relaxed">Meningkatkan koordinasi dan komunikasi baik internal maupun eksternal HMTI UTB</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
+                            <span class="text-gray-700 text-lg leading-relaxed">Melaksanakan kegiatan sesuai dengan kebutuhan mahasiswa Teknik Industri</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -166,63 +179,100 @@
         </div>
     </div>
 </section>
-<div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Section Materi Perkuliahan -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
-                <div class="p-6">
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-4xl font-bold text-purple-900 mb-2">Hello Engineers!</h3>
-                            <h2 class="text-5xl font-bold text-purple-900 leading-tight">
-                                MATERI<br>
-                                PERKULIAHAN<br>
-                                JARAK JAUH
-                            </h2>
+<!-- Materi Section -->
+<section class="bg-gradient-to-b from-white to-gray-50 py-24" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-graduation-cap text-3xl text-indigo-900"></i>
+                        <h3 class="text-3xl md:text-4xl font-bold text-indigo-900">Hello Engineers!</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-book-open text-2xl text-indigo-800"></i>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">MATERI</h2>
                         </div>
-                        
-                        <div class="flex flex-col items-start">
-                            <p class="text-gray-600 mb-4 max-w-md">
-                                Berikut adalah kumpulan Materi Mata Kuliah dari setiap kelasnya dan setiap angkatannya selama masa Perkuliahan Jarak Jauh
-                            </p>
-                            <a href="<?php echo e(route('materials.index')); ?>" 
-                               class="inline-flex items-center px-6 py-3 bg-purple-900 border border-transparent rounded-md font-semibold text-white hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
-                                UNDUH MATERI
-                            </a>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-chalkboard-teacher text-2xl text-indigo-800"></i>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">PERKULIAHAN</h2>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-laptop-house text-2xl text-indigo-800"></i>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">JARAK JAUH</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-start md:items-end md:ml-12">
+                    <div class="flex items-start space-x-3 mb-6">
+                        <i class="fas fa-info-circle text-xl text-indigo-800 mt-1"></i>
+                        <p class="text-gray-600 max-w-md text-lg">
+                            Berikut adalah kumpulan Materi Mata Kuliah dari setiap kelasnya dan setiap angkatannya selama masa Perkuliahan Jarak Jauh
+                        </p>
+                    </div>
+                    <a href="<?php echo e(route('materials.index')); ?>" 
+                       class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-900 to-purple-800 text-white rounded-full font-semibold hover:from-purple-800 hover:to-indigo-900 transition-all duration-300 group shadow-lg">
+                        <i class="fas fa-download mr-2 group-hover:animate-bounce"></i>
+                        UNDUH MATERI
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Tentang Kami -->
+        <section id='about' class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 font-serif mb-12 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-24 after:h-1 after:bg-indigo-900" data-aos="fade-down">
+                Tentang Kami
+            </h2>
+            
+            <div class="space-y-12">
+                <!-- Sejarah -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung. HMTI UTB didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T. Kini, HMTI UTB dipimpin oleh Direktur Utama sejak diubahnya oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Pada periode 2023 - 2024 HMTI UTB dipimpin oleh Direktur Utama Nanda Surya M.P.
+                    </p>
+                </div>
+
+                <!-- Departemen -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-8">Departemen HMTI</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-users text-2xl text-indigo-900"></i>
+                            <p class="text-gray-700 text-lg">Departemen Pengembangan Sumber Daya Mahasiswa (PSDM)</p>
+                        </div>
+                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-microscope text-2xl text-indigo-900"></i>
+                            <p class="text-gray-700 text-lg">Departemen Penelitian dan Pengembangan (LITBANG)</p>
+                        </div>
+                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-network-wired text-2xl text-indigo-900"></i>
+                            <p class="text-gray-700 text-lg">Departemen Perhubungan (PERHUB)</p>
+                        </div>
+                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-bullhorn text-2xl text-indigo-900"></i>
+                            <p class="text-gray-700 text-lg">Departemen Media Komunikasi dan Informasi (MEDKOMINFO)</p>
+                        </div>
+                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 md:col-span-2">
+                            <i class="fas fa-handshake text-2xl text-indigo-900"></i>
+                            <p class="text-gray-700 text-lg">Departemen Bisnis dan Kemitraan (BISTRA)</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-    <!-- Tentang Kami -->
-    <section id='about' class="bg-white py-16" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Tentang Kami</h2>
-            <div class="max-w-3xl mx-auto text-center">
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">
-                    HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung. HMTI UTB didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T. Kini, HMTI UTB dipimpin oleh Direktur Utama sejak diubahnya oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Pada periode 2023 - 2024 HMTI UTB dipimpin oleh Direktur Utama Nanda Surya M.P.
-                </p>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mt-2 md:mt-4 font-light">
-                    HMTI memiliki 5 departemen yaitu:
-                </p>
-                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed mt-2 font-light">
-                    <li>Departemen Pengembangan Sumber Daya Mahasiswa (PSDM)</li>
-                    <li>Departemen Penelitian dan Pengembangan (LITBANG)</li>
-                    <li>Departemen Perhubungan (PERHUB)</li>
-                    <li>Departemen Media Komunikasi dan Informasi (MEDKOMINFO)</li>
-                    <li>Departemen Bisnis dan Kemitraan (BISTRA)</li>
-                </ul>
-            </div>
         </div>
     </section>
+
     <!-- Floating Button -->
     <div class="fixed bottom-4 right-4 z-50">
-        <a href="<?php echo e(route('aspirasi.create')); ?>" class="bg-indigo-900 text-white px-6 py-3 rounded-full shadow-lg hover:bg-purple-800 transition duration-300 flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            <span>SUARAKAN ASPIRASIMU!!!</span>
+        <a href="<?php echo e(route('aspirasi.create')); ?>" 
+           class="bg-gradient-to-r from-indigo-900 to-purple-800 text-white px-6 py-3 rounded-md shadow-lg hover:from-purple-800 hover:to-indigo-900 transition-all duration-300 flex items-center space-x-2 group">
+            <i class="fas fa-comment-dots text-xl group-hover:rotate-12 transition-transform"></i>
+            <span>SUARAKAN ASPIRASIMU!</span>
         </a>
     </div>
 
