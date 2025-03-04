@@ -9,21 +9,15 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <!-- Hero Section -->
-    <section class="relative py-20 md:py-32 -mt-4" data-aos="fade-down">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="{{ asset('storage/images/hero-bg.jpeg') }}" alt="Background" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-indigo-900/75"></div> <!-- Overlay dengan opacity -->
-        </div>
-
-        <!-- Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
+    <!-- Hero Section -->
+    <section class="bg-blue-900 text-white pt-32 pb-16 -mt-4 text-center" data-aos="fade-down">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
             <div class="mb-4">
-                <img src="{{ asset('storage/images/logo.png') }}" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110 ring-4 ring-white/50">
+                <img src="{{ asset('storage/images/logo.png') }}" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110">
             </div>
-            <h1 class="text-3xl md:text-5xl font-bold font-serif text-white drop-shadow-lg">Himpunan Mahasiswa Teknik Industri</h1>
-            <h2 class="text-xl md:text-3xl font-semibold mt-2 text-white/90 drop-shadow-lg">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
-            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light text-white/80 drop-shadow">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
+            <h1 class="text-3xl md:text-5xl font-bold font-serif">Himpunan Mahasiswa Teknik Industri</h1>
+            <h2 class="text-xl md:text-3xl font-semibold mt-2">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
+            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
         </div>
     </section>
 
@@ -199,23 +193,55 @@
             </div>
 
     <!-- Tentang Kami -->
-    <section id='about' class="bg-white py-16" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Tentang Kami</h2>
-            <div class="max-w-3xl mx-auto text-center">
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">
-                    HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung. HMTI UTB didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T. Kini, HMTI UTB dipimpin oleh Direktur Utama sejak diubahnya oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Pada periode 2023 - 2024 HMTI UTB dipimpin oleh Direktur Utama Nanda Surya M.P.
-                </p>
-                <p class="text-gray-700 text-base md:text-lg leading-relaxed mt-2 md:mt-4 font-light">
-                    HMTI memiliki 5 departemen yaitu:
-                </p>
-                <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed mt-2 font-light">
-                    <li>Departemen Pengembangan Sumber Daya Mahasiswa (PSDM)</li>
-                    <li>Departemen Penelitian dan Pengembangan (LITBANG)</li>
-                    <li>Departemen Perhubungan (PERHUB)</li>
-                    <li>Departemen Media Komunikasi dan Informasi (MEDKOMINFO)</li>
-                    <li>Departemen Bisnis dan Kemitraan     (BISTRA)</li>
-                </ul>
+    <section id='about' class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 font-serif mb-4 relative inline-block" data-aos="fade-down">
+                    Tentang Kami
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-900"></div>
+                </h2>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-blue-50 rounded-bl-full opacity-50"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-100 to-blue-50 rounded-tr-full opacity-50"></div>
+                
+                <!-- Logo Watermark -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5">
+                    <img src="{{ asset('storage/images/logo.png') }}" alt="Watermark" class="w-96 h-96">
+                </div>
+                
+                <!-- Content -->
+                <div class="relative z-10">
+                    <div class="prose prose-lg max-w-none">
+                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
+                            HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung.
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mt-8">
+                            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <i class="fas fa-history text-2xl text-blue-900"></i>
+                                    <h3 class="text-xl font-bold text-blue-900">Sejarah Pendirian</h3>
+                                </div>
+                                <p class="text-gray-700">
+                                    Didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <i class="fas fa-crown text-2xl text-blue-900"></i>
+                                    <h3 class="text-xl font-bold text-blue-900">Kepemimpinan</h3>
+                                </div>
+                                <p class="text-gray-700">
+                                    Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2023 - 2024 dipimpin oleh Direktur Utama Nanda Surya M.P.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

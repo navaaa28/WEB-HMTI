@@ -7,18 +7,23 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Include Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Include Glide Core and Theme CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css">
+    <!-- Include Custom Components CSS -->
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
 
-        <!-- Hero Section -->
-        <section class="bg-indigo-900 text-white py-16 -mt-4 text-center" data-aos="fade-down">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-        <div class="mb-4">
-            <img src="{{ asset('storage/images/logo.png') }}" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110">
+    <!-- Hero Section -->
+    <section class="bg-blue-900 text-white pt-32 pb-16 -mt-4 text-center" data-aos="fade-down">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div class="mb-4">
+                <img src="{{ asset('storage/images/logo.png') }}" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110">
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold font-serif">Himpunan Mahasiswa Teknik Industri</h1>
+            <h2 class="text-xl md:text-3xl font-semibold mt-2">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
+            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
         </div>
-        <h1 class="text-3xl md:text-5xl font-bold font-serif">Himpunan Mahasiswa Teknik Industri</h1>
-        <h2 class="text-xl md:text-3xl font-semibold mt-2">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
-        <p class="mt-4 md:mt-6 text-lg md:text-xl font-light">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
-    </div>
-</section>
+    </section>
 
     <!-- About Section -->
     <section id="salam" class="bg-white py-16" data-aos="fade-up">
@@ -78,101 +83,143 @@
     </section>
 
 <!-- Events Section -->
-<section id="events" class="bg-white py-24" data-aos="fade-up">
+<section id="events" class="bg-white py-12 md:py-24" data-aos="fade-up">
     <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center bg-gradient-to-br from-indigo-900 to-purple-800 bg-clip-text text-transparent mb-12 font-serif" data-aos="fade-down">Acara Terbaru</h2>
-        <div class="swiper-container overflow-hidden">
-            <div class="swiper-wrapper">
-                @forelse ($events as $event)
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full mx-2 md:mx-0">
-                            <!-- Gambar -->
-                            <div class="relative h-32 md:h-48">
-                                @if($event->photo)
-                                    <img src="{{ asset('storage/' . $event->photo) }}" alt="{{ $event->name }}" class="w-full h-full object-cover">
-                                @else
-                                    <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                                        <span class="text-gray-500">No Image</span>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center bg-gradient-to-br from-indigo-900 to-purple-800 bg-clip-text text-transparent mb-8 md:mb-12 font-serif" data-aos="fade-down">Acara Terbaru</h2>
+        <div class="events-container">
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        @forelse ($events as $event)
+                            <li class="glide__slide">
+                                <div class="event-card">
+                                    <!-- Gambar -->
+                                    <div class="relative h-40 md:h-48 lg:h-56">
+                                        @if($event->photo)
+                                            <img src="{{ asset('storage/' . $event->photo) }}" alt="{{ $event->name }}" class="w-full h-full object-cover rounded-t-lg">
+                                        @else
+                                            <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-t-lg">
+                                                <span class="text-gray-500">No Image</span>
+                                            </div>
+                                        @endif
                                     </div>
-                                @endif
-                            </div>
 
-                            <!-- Konten Card -->
-                            <div class="p-4 md:p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-semibold text-indigo-900 mb-2 font-serif">
-                                    {{ Str::limit($event->name, 40) }}
-                                </h3>
+                                    <!-- Konten Card -->
+                                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                                        <h3 class="text-base md:text-lg font-semibold text-indigo-900 mb-2 font-serif line-clamp-2">
+                                            {{ $event->name }}
+                                        </h3>
 
-                                <p class="text-gray-600 text-sm line-clamp-3 flex-grow font-light">
-                                    {{ Str::limit($event->description, 100) }}
-                                </p>
+                                        <p class="text-sm md:text-base text-gray-600 line-clamp-3 flex-grow font-light">
+                                            {{ $event->description }}
+                                        </p>
 
-                                <div class="flex items-center justify-between mt-2 md:mt-4">
-                                    <span class="px-2 md:px-3 py-1 text-xs rounded-full {{ $event->registration_open ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                        {{ $event->registration_open ? '🟢 Dibuka' : '🔴 Ditutup' }}
-                                    </span>
-                                    <p class="text-gray-500 text-xs">
-                                        📅 {{ $event->event_date->format('d M Y') }}
-                                    </p>
+                                        <div class="flex items-center justify-between mt-4">
+                                            <span class="px-2 md:px-3 py-1 text-xs md:text-sm rounded-full {{ $event->registration_open ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                                {{ $event->registration_open ? '🟢 Dibuka' : '🔴 Ditutup' }}
+                                            </span>
+                                            <p class="text-xs md:text-sm text-gray-500">
+                                                📅 {{ $event->event_date->format('d M Y') }}
+                                            </p>
+                                        </div>
+
+                                        @if($event->registration_open)
+                                            <a href="{{ route('events.show', $event->id) }}" class="mt-4 bg-indigo-900 text-white px-4 py-2 rounded text-sm md:text-base text-center hover:bg-purple-800 transition duration-300">
+                                                Lihat Detail
+                                            </a>
+                                        @else
+                                            <button disabled class="mt-4 bg-gray-300 text-gray-600 px-4 py-2 rounded text-sm md:text-base text-center w-full cursor-not-allowed">
+                                                Ditutup
+                                            </button>
+                                        @endif
+                                    </div>
                                 </div>
+                            </li>
+                        @empty
+                            <li class="glide__slide">
+                                <div class="text-center py-12">
+                                    <p class="text-gray-600 text-base md:text-lg">Tidak ada acara terbaru saat ini</p>
+                                </div>
+                            </li>
+                        @endforelse
+                    </ul>
+                </div>
 
-                                @if($event->registration_open)
-                                    <a href="{{ route('events.show', $event->id) }}" class="bg-indigo-900 text-white px-3 md:px-4 py-1 md:py-2 rounded mt-2 md:mt-4 text-center hover:bg-purple-800 transition duration-300">
-                                        Lihat Detail
-                                    </a>
-                                @else
-                                    <button class="bg-gray-300 text-gray-600 px-3 md:px-4 py-1 md:py-2 rounded text-center w-full cursor-not-allowed mt-2 md:mt-4" disabled>
-                                        Ditutup
-                                    </button>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div class="col-span-3 text-center py-6 md:py-12">
-                        <p class="text-gray-600 text-lg">Tidak ada acara terbaru saat ini</p>
-                    </div>
-                @endforelse
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                        <i class="fas fa-chevron-left text-sm md:text-base"></i>
+                    </button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                        <i class="fas fa-chevron-right text-sm md:text-base"></i>
+                    </button>
+                </div>
+
+                <div class="glide__bullets" data-glide-el="controls[nav]">
+                    @foreach($events as $index => $event)
+                        <button class="glide__bullet" data-glide-dir="={{$index}}"></button>
+                    @endforeach
+                </div>
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination mt-8"></div>
         </div>
     </div>
 </section>
 
 <!-- Struktur Organisasi Section -->
-<section id="struktur" class="bg-gray-50 py-16" data-aos="fade-up">
+<section id="struktur" class="bg-gray-50 py-12 md:py-16" data-aos="fade-up">
     <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center">
-            <h2 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
+        <div class="text-center mb-8 md:mb-12">
+            <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
             <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">HIMPUNAN MAHASISWA TEKNIK INDUSTRI</h3>
-            <h4 class="text-md md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
-            <p class="text-sm md:text-base text-indigo-900 mb-4 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
+            <h4 class="text-base md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
+            <p class="text-sm md:text-base text-indigo-900 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
         </div>
 
-        <!-- Swiper Container -->
-        <div class="swiper-container overflow-hidden">
-            <div class="swiper-wrapper">
-                @foreach ($anggotas as $anggota)
-                    @if (in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']))
-                        <div class="swiper-slide">
-                            <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg text-center mx-2 md:mx-0 hover:shadow-xl transition-shadow duration-300">
-                                <img src="{{ $anggota->foto }}" alt="Foto {{ $anggota->nama }}" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
-                                <h3 class="text-lg md:text-xl font-bold font-serif">{{ $anggota->nama }}</h3>
-                                <p class="text-sm text-gray-600 font-light">{{ $anggota->jabatan }}</p>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
+        <div class="struktur-container">
+            <div class="glide-struktur">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        @foreach ($anggotas as $anggota)
+                            @if (in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']))
+                                <li class="glide__slide">
+                                    <div class="struktur-card p-4 md:p-6 text-center">
+                                        <div class="relative w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                                            <img src="{{ $anggota->foto }}" alt="Foto {{ $anggota->nama }}" class="w-full h-full rounded-full object-cover shadow-md">
+                                        </div>
+                                        <h3 class="text-base md:text-lg lg:text-xl font-bold font-serif text-indigo-900 mb-1">{{ $anggota->nama }}</h3>
+                                        <p class="text-sm md:text-base text-gray-600 font-light">{{ $anggota->jabatan }}</p>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                        <i class="fas fa-chevron-left text-sm md:text-base"></i>
+                    </button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                        <i class="fas fa-chevron-right text-sm md:text-base"></i>
+                    </button>
+                </div>
+
+                <div class="glide__bullets" data-glide-el="controls[nav]">
+                    @foreach($anggotas->where(function($anggota) { 
+                        return in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']); 
+                    }) as $index => $anggota)
+                        <button class="glide__bullet" data-glide-dir="={{$index}}"></button>
+                    @endforeach
+                </div>
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
         </div>
 
         <!-- Tombol Lihat Seluruh Anggota -->
-        <div class="text-right mt-8">
-            <a href="{{ route('anggota.index') }}" class="bg-indigo-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-800 transition duration-300">
-                Lihat Seluruh Anggota
+        <div class="text-center mt-8 md:mt-12">
+            <a href="{{ route('anggota.index') }}" class="interactive-button">
+                <span>
+                    <i class="fas fa-users"></i>
+                    Lihat Seluruh Anggota
+                </span>
             </a>
         </div>
     </div>
@@ -222,48 +269,57 @@
 
         <!-- Tentang Kami -->
         <section id='about' class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-indigo-900 font-serif mb-12 relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-24 after:h-1 after:bg-indigo-900" data-aos="fade-down">
-                Tentang Kami
-            </h2>
-            
-            <div class="space-y-12">
-                <!-- Sejarah -->
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <p class="text-gray-700 text-lg leading-relaxed">
-                        HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung. HMTI UTB didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T. Kini, HMTI UTB dipimpin oleh Direktur Utama sejak diubahnya oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Pada periode 2023 - 2024 HMTI UTB dipimpin oleh Direktur Utama Nanda Surya M.P.
-                    </p>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 font-serif mb-4 relative inline-block" data-aos="fade-down">
+                        Tentang Kami
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-900"></div>
+                    </h2>
                 </div>
-
-                <!-- Departemen -->
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-8">Departemen HMTI</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-users text-2xl text-indigo-900"></i>
-                            <p class="text-gray-700 text-lg">Departemen Pengembangan Sumber Daya Mahasiswa (PSDM)</p>
-                        </div>
-                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-microscope text-2xl text-indigo-900"></i>
-                            <p class="text-gray-700 text-lg">Departemen Penelitian dan Pengembangan (LITBANG)</p>
-                        </div>
-                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-network-wired text-2xl text-indigo-900"></i>
-                            <p class="text-gray-700 text-lg">Departemen Perhubungan (PERHUB)</p>
-                        </div>
-                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-bullhorn text-2xl text-indigo-900"></i>
-                            <p class="text-gray-700 text-lg">Departemen Media Komunikasi dan Informasi (MEDKOMINFO)</p>
-                        </div>
-                        <div class="flex items-center space-x-4 p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 md:col-span-2">
-                            <i class="fas fa-handshake text-2xl text-indigo-900"></i>
-                            <p class="text-gray-700 text-lg">Departemen Bisnis dan Kemitraan (BISTRA)</p>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Background Pattern -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-blue-50 rounded-bl-full opacity-50"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-100 to-blue-50 rounded-tr-full opacity-50"></div>
+                    
+                    <!-- Logo Watermark -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5">
+                        <img src="{{ asset('storage/images/logo.png') }}" alt="Watermark" class="w-96 h-96">
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="relative z-10">
+                        <div class="prose prose-lg max-w-none">
+                            <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
+                                HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung.
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
+                                    <div class="flex items-center space-x-3 mb-4">
+                                        <i class="fas fa-history text-2xl text-blue-900"></i>
+                                        <h3 class="text-xl font-bold text-blue-900">Sejarah Pendirian</h3>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T.
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
+                                    <div class="flex items-center space-x-3 mb-4">
+                                        <i class="fas fa-crown text-2xl text-blue-900"></i>
+                                        <h3 class="text-xl font-bold text-blue-900">Kepemimpinan</h3>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2023 - 2024 dipimpin oleh Direktur Utama Nanda Surya M.P.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Floating Button -->
     <div class="fixed bottom-4 right-4 z-50">
@@ -284,74 +340,77 @@
         });
     </script>
 
-    <!-- Initialize Swiper -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-    // Konfigurasi Swiper untuk Events
-    const eventSwiper = new Swiper('#events .swiper-container', {
-        slidesPerView: 1, // Default untuk mobile
-        spaceBetween: 10,
-        pagination: {
-            el: '#events .swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            640: { // Tablet ke atas
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            1024: { // Desktop
-                slidesPerView: 3,
-                spaceBetween: 30
-            }
-        }
-    });
+    <!-- Initialize Glide for Events -->
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            offset: 120,
+            easing: 'ease-in-out'
+        });
 
-    // Konfigurasi Swiper untuk Members
-    const memberSwiper = new Swiper('#members .swiper-container', {
-        slidesPerView: 1, // Default untuk mobile
-        spaceBetween: 10,
-        pagination: {
-            el: '#members .swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            640: { // Tablet ke atas
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            768: { // Desktop kecil
-                slidesPerView: 3,
-                spaceBetween: 30
-            },
-            1024: { // Desktop besar
-                slidesPerView: 4,
-                spaceBetween: 40
+        // Initialize Glide for Events
+        new Glide('.glide', {
+            type: 'carousel',
+            perView: 3,
+            gap: 20,
+            autoplay: 5000,
+            hoverpause: true,
+            breakpoints: {
+                1280: {
+                    perView: 3,
+                    gap: 20
+                },
+                1024: {
+                    perView: 2,
+                    gap: 15
+                },
+                768: {
+                    perView: 2,
+                    gap: 10
+                },
+                640: {
+                    perView: 1,
+                    gap: 10
+                },
+                480: {
+                    perView: 1,
+                    gap: 5
+                }
             }
-        }
-    });
-    // Konfigurasi Swiper untuk Struktur Organisasi
-    const strukturSwiper = new Swiper('#struktur .swiper-container', {
-        slidesPerView: 1, // Default untuk mobile
-        spaceBetween: 10,
-        pagination: {
-            el: '#struktur .swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            640: { // Tablet ke atas
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            768: { // Desktop kecil
-                slidesPerView: 3,
-                spaceBetween: 30
-            },
-            1024: { // Desktop besar
-                slidesPerView: 4,
-                spaceBetween: 40
+        }).mount();
+
+        // Initialize Glide for Struktur Organisasi
+        new Glide('.glide-struktur', {
+            type: 'carousel',
+            perView: 4,
+            gap: 20,
+            autoplay: 5000,
+            hoverpause: true,
+            breakpoints: {
+                1280: {
+                    perView: 4,
+                    gap: 20
+                },
+                1024: {
+                    perView: 3,
+                    gap: 15
+                },
+                768: {
+                    perView: 2,
+                    gap: 10
+                },
+                640: {
+                    perView: 1,
+                    gap: 10
+                },
+                480: {
+                    perView: 1,
+                    gap: 5
+                }
             }
-        }
-    });
-</script>
+        }).mount();
+    </script>
 @endsection

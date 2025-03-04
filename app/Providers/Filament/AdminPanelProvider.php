@@ -60,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class, // Middleware auth bawaan Filament
                 \App\Http\Middleware\AdminMiddleware::class, // Gunakan middleware langsung
-            ]);
+            ])
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }
