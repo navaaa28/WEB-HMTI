@@ -54,7 +54,9 @@
                         <h3 class="text-2xl font-bold text-indigo-900 font-serif">Visi</h3>
                     </div>
                     <p class="text-gray-700 text-lg leading-relaxed">
-                        Menjadikan HMTI UTB yang Komunikatif, Dinamis, dan Berintegritas sebagai penggerak dalam mewujudkan aspirasi Mahasiswa Teknik Industri UTB.
+                        Menjadikan HMTI UTB sebagai organisasi yang komunikatif,
+                        berintegritas, dan profesional dalam rangka mewujudkan
+                        aspirasi mahasiswa Teknik Industri UTB.
                     </p>
                 </div>
                 <!-- Misi -->
@@ -66,15 +68,15 @@
                     <ul class="space-y-4">
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
-                            <span class="text-gray-700 text-lg leading-relaxed">Menciptakan lingkungan kerja yang disiplin, bertanggung jawab, dan profesional</span>
+                            <span class="text-gray-700 text-lg leading-relaxed">Meningkatkan komunikasi dalam ranah internal maupun eksternal.</span>
                         </li>
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
-                            <span class="text-gray-700 text-lg leading-relaxed">Meningkatkan koordinasi dan komunikasi baik internal maupun eksternal HMTI UTB</span>
+                            <span class="text-gray-700 text-lg leading-relaxed">Terbentuknya kerjasama yang disiplin dan profesional.</span>
                         </li>
                         <li class="flex items-start space-x-3">
                             <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
-                            <span class="text-gray-700 text-lg leading-relaxed">Melaksanakan kegiatan sesuai dengan kebutuhan mahasiswa Teknik Industri</span>
+                            <span class="text-gray-700 text-lg leading-relaxed">Menciptakan aktivitas organisasi yang sesuai dengan kebutuhan perangkat.</span>
                         </li>
                     </ul>
                 </div>
@@ -231,7 +233,7 @@
                 <div class="mb-8 md:mb-0">
                     <div class="flex items-center space-x-3 mb-6">
                         <i class="fas fa-graduation-cap text-3xl text-indigo-900"></i>
-                        <h3 class="text-3xl md:text-4xl font-bold text-indigo-900">Hello Engineers!</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold text-indigo-900">Halo Engineers!</h3>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
@@ -311,7 +313,7 @@
                                         <h3 class="text-xl font-bold text-blue-900">Kepemimpinan</h3>
                                     </div>
                                     <p class="text-gray-700">
-                                        Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2023 - 2024 dipimpin oleh Direktur Utama Nanda Surya M.P.
+                                        Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2024 - 2025 dipimpin oleh Direktur Utama Muhammad Dzulfikri Halim.
                                     </p>
                                 </div>
                             </div>

@@ -14,6 +14,9 @@ class Event extends Model
         'photo',
         'price',
         'is_visible',
+        'location',
+        'quota',
+        'registration_deadline',
     ];
     public function isRegistered($userId)
 {
@@ -30,5 +33,6 @@ public function tickets()
 
 protected $casts = [
     'event_date' => 'datetime',
+    'registration_deadline' => 'datetime',
 ];
 }

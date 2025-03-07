@@ -7,8 +7,41 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Include Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Include Glide Core and Theme CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css">
+    <!-- Include Custom Components CSS -->
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
 
-    <!-- Hero Section -->
+    @if (session('success'))
+        <div class="fixed top-4 right-4 z-50 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+
+    @if (!auth()->user()->hasVerifiedEmail())
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm">
+                        Silakan verifikasi email Anda untuk mengakses fitur lengkap.
+                        <form method="POST" action="{{ route('verification.send') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="font-medium underline text-yellow-700 hover:text-yellow-600">
+                                Kirim ulang email verifikasi
+                            </button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <!-- Hero Section -->
     <section class="bg-blue-900 text-white pt-32 pb-16 -mt-4 text-center" data-aos="fade-down">
         <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
@@ -39,24 +72,41 @@
     </section>
 
     <!-- Visi & Misi Section -->
-    <section class="bg-gray-50 py-16" data-aos="fade-up">
+    <section class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Visi & Misi</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-900 mb-12 font-serif relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-24 after:h-1 after:bg-indigo-900" data-aos="fade-down">Visi & Misi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Visi -->
-                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg" data-aos="fade-right">
-                    <h3 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 md:mb-4 font-serif">Visi</h3>
-                    <p class="text-gray-700 text-base md:text-lg leading-relaxed font-light">
-                        Menjadikan HMTI UTB yang Komunikatif, Dinamis, dan Berintegritas sebagai penggerak dalam mewujudkan aspirasi Mahasiswa Teknik Industri UTB.
+                <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-aos="fade-right">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-eye text-2xl text-indigo-900"></i>
+                        <h3 class="text-2xl font-bold text-indigo-900 font-serif">Visi</h3>
+                    </div>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Menjadikan HMTI UTB sebagai organisasi yang komunikatif,
+                        berintegritas, dan profesional dalam rangka mewujudkan
+                        aspirasi mahasiswa Teknik Industri UTB.
                     </p>
                 </div>
                 <!-- Misi -->
-                <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg" data-aos="fade-left">
-                    <h3 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 md:mb-4 font-serif">Misi</h3>
-                    <ul class="list-disc list-inside text-gray-700 text-base md:text-lg leading-relaxed font-light">
-                        <li>Menciptakan lingkungan kerja yang disiplin, bertanggung jawab, dan profesional</li>
-                        <li>Meningkatkan koordinasi dan komunikasi baik internal maupun eksternal HMTI UTB</li>
-                        <li>Melaksanakan kegiatan sesuai dengan kebutuhan mahasiswa Teknik Industri</li>
+                <div class="bg-gradient-to-br from-white to-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" data-aos="fade-left">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fas fa-bullseye text-2xl text-indigo-900"></i>
+                        <h3 class="text-2xl font-bold text-indigo-900 font-serif">Misi</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
+                            <span class="text-gray-700 text-lg leading-relaxed">Meningkatkan komunikasi dalam ranah internal maupun eksternal.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
+                            <span class="text-gray-700 text-lg leading-relaxed">Terbentuknya kerjasama yang disiplin dan profesional.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-indigo-900 mt-1"></i>
+                            <span class="text-gray-700 text-lg leading-relaxed">Menciptakan aktivitas organisasi yang sesuai dengan kebutuhan perangkat.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -64,133 +114,189 @@
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="bg-white py-16" data-aos="fade-up">
+    <section id="events" class="bg-white py-12 md:py-24" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-indigo-900 mb-4 md:mb-8 font-serif" data-aos="fade-down">Acara Terbaru</h2>
-            <div class="swiper-container overflow-hidden">
-                <div class="swiper-wrapper">
-                    @forelse ($events as $event)
-                        <div class="swiper-slide">
-                            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full mx-2 md:mx-0">
-                                <!-- Gambar -->
-                                <div class="relative h-32 md:h-48">
-                                    @if($event->photo)
-                                        <img src="{{ asset('storage/' . $event->photo) }}" alt="{{ $event->name }}" class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                                            <span class="text-gray-500">No Image</span>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center bg-gradient-to-br from-indigo-900 to-purple-800 bg-clip-text text-transparent mb-8 md:mb-12 font-serif" data-aos="fade-down">Acara Terbaru</h2>
+            <div class="events-container">
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            @forelse ($events as $event)
+                                <li class="glide__slide">
+                                    <div class="event-card">
+                                        <!-- Gambar -->
+                                        <div class="relative h-40 md:h-48 lg:h-56">
+                                            @if($event->photo)
+                                                <img src="{{ asset('storage/' . $event->photo) }}" alt="{{ $event->name }}" class="w-full h-full object-cover rounded-t-lg">
+                                            @else
+                                                <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-t-lg">
+                                                    <span class="text-gray-500">No Image</span>
+                                                </div>
+                                            @endif
                                         </div>
-                                    @endif
-                                </div>
 
-                                <!-- Konten Card -->
-                                <div class="p-4 md:p-6 flex flex-col flex-grow">
-                                    <h3 class="text-lg font-semibold text-indigo-900 mb-2 font-serif">
-                                        {{ Str::limit($event->name, 40) }}
-                                    </h3>
+                                        <!-- Konten Card -->
+                                        <div class="p-4 md:p-6 flex flex-col flex-grow">
+                                            <h3 class="text-base md:text-lg font-semibold text-indigo-900 mb-2 font-serif line-clamp-2">
+                                                {{ $event->name }}
+                                            </h3>
 
-                                    <p class="text-gray-600 text-sm line-clamp-3 flex-grow font-light">
-                                        {{ Str::limit($event->description, 100) }}
-                                    </p>
+                                            <p class="text-sm md:text-base text-gray-600 line-clamp-3 flex-grow font-light">
+                                                {{ $event->description }}
+                                            </p>
 
-                                    <div class="flex items-center justify-between mt-2 md:mt-4">
-                                        <span class="px-2 md:px-3 py-1 text-xs rounded-full {{ $event->registration_open ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                            {{ $event->registration_open ? '🟢 Dibuka' : '🔴 Ditutup' }}
-                                        </span>
-                                        <p class="text-gray-500 text-xs">
-                                            📅 {{ $event->event_date->format('d M Y') }}
-                                        </p>
+                                            <div class="flex items-center justify-between mt-4">
+                                                <span class="px-2 md:px-3 py-1 text-xs md:text-sm rounded-full {{ $event->registration_open ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                                    {{ $event->registration_open ? '🟢 Dibuka' : '🔴 Ditutup' }}
+                                                </span>
+                                                <p class="text-xs md:text-sm text-gray-500">
+                                                    📅 {{ $event->event_date->format('d M Y') }}
+                                                </p>
+                                            </div>
+
+                                            @if($event->registration_open)
+                                                <a href="{{ route('events.show', $event->id) }}" class="mt-4 bg-indigo-900 text-white px-4 py-2 rounded text-sm md:text-base text-center hover:bg-purple-800 transition duration-300">
+                                                    Lihat Detail
+                                                </a>
+                                            @else
+                                                <button disabled class="mt-4 bg-gray-300 text-gray-600 px-4 py-2 rounded text-sm md:text-base text-center w-full cursor-not-allowed">
+                                                    Ditutup
+                                                </button>
+                                            @endif
+                                        </div>
                                     </div>
+                                </li>
+                            @empty
+                                <li class="glide__slide">
+                                    <div class="text-center py-12">
+                                        <p class="text-gray-600 text-base md:text-lg">Tidak ada acara terbaru saat ini</p>
+                                    </div>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
 
-                                    @if($event->registration_open)
-                                        <a href="{{ route('events.show', $event->id) }}" class="bg-indigo-900 text-white px-3 md:px-4 py-1 md:py-2 rounded mt-2 md:mt-4 text-center hover:bg-indigo-800 transition duration-300">
-                                            Lihat Detail
-                                        </a>
-                                    @else
-                                        <button class="bg-gray-300 text-gray-600 px-3 md:px-4 py-1 md:py-2 rounded text-center w-full cursor-not-allowed mt-2 md:mt-4" disabled>
-                                            Ditutup
-                                        </button>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="col-span-3 text-center py-6 md:py-12">
-                            <p class="text-gray-600 text-lg">Tidak ada acara terbaru saat ini</p>
-                        </div>
-                    @endforelse
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                            <i class="fas fa-chevron-left text-sm md:text-base"></i>
+                        </button>
+                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                            <i class="fas fa-chevron-right text-sm md:text-base"></i>
+                        </button>
+                    </div>
+
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        @foreach($events as $index => $event)
+                            <button class="glide__bullet" data-glide-dir="={{$index}}"></button>
+                        @endforeach
+                    </div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
 
     <!-- Struktur Organisasi Section -->
-    <section id="struktur" class="bg-gray-50 py-16" data-aos="fade-up">
+    <section id="struktur" class="bg-gray-50 py-12 md:py-16" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center">
-                <h2 class="text-xl md:text-2xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
+            <div class="text-center mb-8 md:mb-12">
+                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
                 <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">HIMPUNAN MAHASISWA TEKNIK INDUSTRI</h3>
-                <h4 class="text-md md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
-                <p class="text-sm md:text-base text-indigo-900 mb-4 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
+                <h4 class="text-base md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
+                <p class="text-sm md:text-base text-indigo-900 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
             </div>
 
-            <!-- Swiper Container -->
-            <div class="swiper-container overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($anggotas as $anggota)
-                        @if (in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']))
-                            <div class="swiper-slide">
-                                <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg text-center mx-2 md:mx-0 hover:shadow-xl transition-shadow duration-300">
-                                    <img src="{{ $anggota->foto }}" alt="Foto {{ $anggota->nama }}" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
-                                    <h3 class="text-lg md:text-xl font-bold font-serif">{{ $anggota->nama }}</h3>
-                                    <p class="text-sm text-gray-600 font-light">{{ $anggota->jabatan }}</p>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
+            <div class="struktur-container">
+                <div class="glide-struktur">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            @foreach ($anggotas as $anggota)
+                                @if (in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']))
+                                    <li class="glide__slide">
+                                        <div class="struktur-card p-4 md:p-6 text-center">
+                                            <div class="relative w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                                                <img src="{{ $anggota->foto }}" alt="Foto {{ $anggota->nama }}" class="w-full h-full rounded-full object-cover shadow-md">
+                                            </div>
+                                            <h3 class="text-base md:text-lg lg:text-xl font-bold font-serif text-indigo-900 mb-1">{{ $anggota->nama }}</h3>
+                                            <p class="text-sm md:text-base text-gray-600 font-light">{{ $anggota->jabatan }}</p>
+                                        </div>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                            <i class="fas fa-chevron-left text-sm md:text-base"></i>
+                        </button>
+                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                            <i class="fas fa-chevron-right text-sm md:text-base"></i>
+                        </button>
+                    </div>
+
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        @foreach($anggotas->where(function($anggota) { 
+                            return in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']); 
+                        }) as $index => $anggota)
+                            <button class="glide__bullet" data-glide-dir="={{$index}}"></button>
+                        @endforeach
+                    </div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
             </div>
 
             <!-- Tombol Lihat Seluruh Anggota -->
-            <div class="text-center mt-8">
-                <a href="{{ route('anggota.index') }}" class="bg-indigo-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-800 transition duration-300">
-                    Lihat Seluruh Anggota
+            <div class="text-center mt-8 md:mt-12">
+                <a href="{{ route('anggota.index') }}" class="interactive-button">
+                    <span>
+                        <i class="fas fa-users"></i>
+                        Lihat Seluruh Anggota
+                    </span>
                 </a>
             </div>
         </div>
     </section>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Section Materi Perkuliahan -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
-                <div class="p-6">
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-4xl font-bold text-purple-900 mb-2">Hello Engineers!</h3>
-                            <h2 class="text-5xl font-bold text-purple-900 leading-tight">
-                                MATERI<br>
-                                PERKULIAHAN<br>
-                                JARAK JAUH
-                            </h2>
+    <!-- Materi Section -->
+    <section class="bg-gradient-to-b from-white to-gray-50 py-24" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-graduation-cap text-3xl text-indigo-900"></i>
+                        <h3 class="text-3xl md:text-4xl font-bold text-indigo-900">Halo Engineers!</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-book-open text-2xl text-indigo-800"></i>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">MATERI</h2>
                         </div>
-                        
-                        <div class="flex flex-col items-start">
-                            <p class="text-gray-600 mb-4 max-w-md">
-                                Berikut adalah kumpulan Materi Mata Kuliah dari setiap kelasnya dan setiap angkatannya selama masa Perkuliahan Jarak Jauh
-                            </p>
-                            <a href="{{ route('materials.index') }}" 
-                               class="inline-flex items-center px-6 py-3 bg-purple-900 border border-transparent rounded-md font-semibold text-white hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
-                                UNDUH MATERI
-                            </a>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-chalkboard-teacher text-2xl text-indigo-800"></i>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">PERKULIAHAN</h2>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-laptop-house text-2xl text-indigo-800"></i>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">JARAK JAUH</h2>
                         </div>
                     </div>
                 </div>
+                
+                <div class="flex flex-col items-start md:items-end md:ml-12">
+                    <div class="flex items-start space-x-3 mb-6">
+                        <i class="fas fa-info-circle text-xl text-indigo-800 mt-1"></i>
+                        <p class="text-gray-600 max-w-md text-lg">
+                            Berikut adalah kumpulan Materi Mata Kuliah dari setiap kelasnya dan setiap angkatannya selama masa Perkuliahan Jarak Jauh
+                        </p>
+                    </div>
+                    <a href="{{ route('materials.index') }}" 
+                       class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-900 to-purple-800 text-white rounded-full font-semibold hover:from-purple-800 hover:to-indigo-900 transition-all duration-300 group shadow-lg">
+                        <i class="fas fa-download mr-2 group-hover:animate-bounce"></i>
+                        UNDUH MATERI
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
 
     <!-- Tentang Kami -->
     <section id='about' class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
@@ -236,7 +342,7 @@
                                     <h3 class="text-xl font-bold text-blue-900">Kepemimpinan</h3>
                                 </div>
                                 <p class="text-gray-700">
-                                    Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2023 - 2024 dipimpin oleh Direktur Utama Nanda Surya M.P.
+                                    Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2024 - 2025 dipimpin oleh Direktur Utama Muhammad Dzulfikri Halim.
                                 </p>
                             </div>
                         </div>
@@ -248,11 +354,10 @@
 
     <!-- Floating Button -->
     <div class="fixed bottom-4 right-4 z-50">
-        <a href="{{ route('aspirasi.create') }}" class="bg-indigo-900 text-white px-6 py-3 rounded-full shadow-lg hover:bg-indigo-800 transition duration-300 flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            <span>SUARAKAN ASPIRASIMU!!!</span>
+        <a href="{{ route('aspirasi.create') }}" 
+           class="bg-gradient-to-r from-indigo-900 to-purple-800 text-white px-6 py-3 rounded-md shadow-lg hover:from-purple-800 hover:to-indigo-900 transition-all duration-300 flex items-center space-x-2 group">
+            <i class="fas fa-comment-dots text-xl group-hover:rotate-12 transition-transform"></i>
+            <span>SUARAKAN ASPIRASIMU!</span>
         </a>
     </div>
 
@@ -266,74 +371,77 @@
         });
     </script>
 
-    <!-- Initialize Swiper -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Initialize Glide for Events -->
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script>
-        // Konfigurasi Swiper untuk Events
-        const eventSwiper = new Swiper('#events .swiper-container', {
-            slidesPerView: 1, // Default untuk mobile
-            spaceBetween: 10,
-            pagination: {
-                el: '#events .swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: { // Tablet ke atas
-                    slidesPerView: 2,
-                    spaceBetween: 20
-                },
-                1024: { // Desktop
-                    slidesPerView: 3,
-                    spaceBetween: 30
-                }
-            }
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            offset: 120,
+            easing: 'ease-in-out'
         });
 
-        // Konfigurasi Swiper untuk Members
-        const memberSwiper = new Swiper('#members .swiper-container', {
-            slidesPerView: 1, // Default untuk mobile
-            spaceBetween: 10,
-            pagination: {
-                el: '#members .swiper-pagination',
-                clickable: true,
-            },
+        // Initialize Glide for Events
+        new Glide('.glide', {
+            type: 'carousel',
+            perView: 3,
+            gap: 20,
+            autoplay: 5000,
+            hoverpause: true,
             breakpoints: {
-                640: { // Tablet ke atas
-                    slidesPerView: 2,
-                    spaceBetween: 20
+                1280: {
+                    perView: 3,
+                    gap: 20
                 },
-                768: { // Desktop kecil
-                    slidesPerView: 3,
-                    spaceBetween: 30
+                1024: {
+                    perView: 2,
+                    gap: 15
                 },
-                1024: { // Desktop besar
-                    slidesPerView: 4,
-                    spaceBetween: 40
+                768: {
+                    perView: 2,
+                    gap: 10
+                },
+                640: {
+                    perView: 1,
+                    gap: 10
+                },
+                480: {
+                    perView: 1,
+                    gap: 5
                 }
             }
-        });
-        // Konfigurasi Swiper untuk Struktur Organisasi
-    const strukturSwiper = new Swiper('#struktur .swiper-container', {
-        slidesPerView: 1, // Default untuk mobile
-        spaceBetween: 10,
-        pagination: {
-            el: '#struktur .swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            640: { // Tablet ke atas
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            768: { // Desktop kecil
-                slidesPerView: 3,
-                spaceBetween: 30
-            },
-            1024: { // Desktop besar
-                slidesPerView: 4,
-                spaceBetween: 40
+        }).mount();
+
+        // Initialize Glide for Struktur Organisasi
+        new Glide('.glide-struktur', {
+            type: 'carousel',
+            perView: 4,
+            gap: 20,
+            autoplay: 5000,
+            hoverpause: true,
+            breakpoints: {
+                1280: {
+                    perView: 4,
+                    gap: 20
+                },
+                1024: {
+                    perView: 3,
+                    gap: 15
+                },
+                768: {
+                    perView: 2,
+                    gap: 10
+                },
+                640: {
+                    perView: 1,
+                    gap: 10
+                },
+                480: {
+                    perView: 1,
+                    gap: 5
+                }
             }
-        }
-    });
+        }).mount();
     </script>
 @endsection

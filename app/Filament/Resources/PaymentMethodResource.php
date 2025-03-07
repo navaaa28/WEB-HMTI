@@ -25,8 +25,16 @@ class PaymentMethodResource extends Resource
             ->schema([
                 TextInput::make('name')->required()->label('Nama Metode Pembayaran'),
                 TextInput::make('description')->label('Deskripsi'),
-                FileUpload::make('logo')->directory('payment_methods')->label('Logo'),
-                FileUpload::make('qr_code')->directory('payments/qrcode')->label('Upload QR Code'),
+                FileUpload::make('logo')
+                    ->directory('payment_methods')
+                    ->label('Logo')
+                    ->image()
+                    ->optional(),
+                FileUpload::make('qr_code')
+                    ->directory('payments/qrcode')
+                    ->label('Upload QR Code')
+                    ->image()
+                    ->optional(),
                 TextInput::make('bank')->label('Nama Bank')->required(),
                 TextInput::make('account_number')->label('Nomor Rekening')->required(),
                 TextInput::make('account_name')->label('Nama Pemilik Rekening')->required(),
@@ -39,11 +47,18 @@ class PaymentMethodResource extends Resource
             ->columns([
                 TextColumn::make('name')->sortable()->label('Nama'),
                 TextColumn::make('description')->label('Deskripsi'),
-                ImageColumn::make('logo')->label('Logo'),
+                ImageColumn::make('logo')
+                    ->label('Logo')
+                    ->height(50)
+                    ->width(50)
+                    ->visibility(fn ($record): bool => $record->logo !== null && $record->logo !== '')
+                    ->getStateUsing(fn ($record) => $record->logo ? asset('storage/' . $record->logo) : null),
                 ImageColumn::make('qr_code')
                     ->label('QR Code')
-                    ->size(50) // Ukuran thumbnail
-                    ->disk('public'),
+                    ->height(50)
+                    ->width(50)
+                    ->visibility(fn ($record): bool => $record->qr_code !== null && $record->qr_code !== '')
+                    ->getStateUsing(fn ($record) => $record->qr_code ? asset('storage/' . $record->qr_code) : null),
                 TextColumn::make('bank')->label('Bank'),
                 TextColumn::make('account_number')->label('Nomor Rekening'),
                 TextColumn::make('account_name')->label('Nama Pemilik Rekening'),

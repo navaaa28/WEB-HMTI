@@ -33,16 +33,29 @@ class EventResource extends Resource
             Forms\Components\TextInput::make('name')->required(),
             Forms\Components\Textarea::make('description')->required(),
             Forms\Components\DateTimePicker::make('event_date')->required(),
+            Forms\Components\TextInput::make('location')
+                ->label('Lokasi')
+                ->required()
+                ->default('Online'),
+            Forms\Components\TextInput::make('quota')
+                ->label('Kuota Peserta')
+                ->numeric()
+                ->required()
+                ->default(0)
+                ->minValue(0),
+            Forms\Components\DateTimePicker::make('registration_deadline')
+                ->label('Batas Waktu Pendaftaran')
+                ->required(),
             Forms\Components\Toggle::make('registration_open')->default(true),
             Forms\Components\Toggle::make('is_visible')
-            ->label('Tampilkan Event')
-            ->default(true),
+                ->label('Tampilkan Event')
+                ->default(true),
             Forms\Components\TextInput::make('price')            
-            ->label('Harga Tiket')
-            ->numeric()
-            ->required()
-            ->default(0)
-            ->minValue(0),
+                ->label('Harga Tiket')
+                ->numeric()
+                ->required()
+                ->default(0)
+                ->minValue(0),
 
             Forms\Components\FileUpload::make('photo')
                 ->label('Foto Acara')
@@ -58,6 +71,17 @@ class EventResource extends Resource
         ->columns([
             Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
             Tables\Columns\TextColumn::make('event_date')->dateTime(),
+            Tables\Columns\TextColumn::make('location')->label('Lokasi'),
+            Tables\Columns\TextColumn::make('quota')
+                ->label('Sisa Kuota')
+                ->badge()
+                ->getStateUsing(function ($record) {
+                    $approvedCount = $record->registrations()->where('status', 'approved')->count();
+                    return $record->quota - $approvedCount;
+                }),
+            Tables\Columns\TextColumn::make('registration_deadline')
+                ->label('Batas Pendaftaran')
+                ->dateTime(),
             Tables\Columns\TextColumn::make('registration_open')
                 ->badge()
                 ->color(fn (string $state): string => match ($state) {

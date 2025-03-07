@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Support\Enums\IconSize;
 use Filament\Support\Facades\FilamentIcon;
+use App\Filament\Widgets\EventInsightsWidget;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -43,6 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
+                EventInsightsWidget::class,
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])

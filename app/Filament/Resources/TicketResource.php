@@ -45,8 +45,10 @@ class TicketResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('qr_code')
                     ->label('QR Code')
-                    ->circular(false)
-                    ->square(),
+                    ->height(50)
+                    ->width(50)
+                    ->visibility(fn ($record): bool => $record->qr_code !== null && $record->qr_code !== '')
+                    ->getStateUsing(fn ($record) => $record->qr_code ? asset('storage/' . $record->qr_code) : null),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
                     ->badge()

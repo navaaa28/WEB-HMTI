@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Session;
 
 class RegisteredUserController extends Controller
 {
@@ -46,6 +47,9 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        // Tambahkan pesan sukses
+        Session::flash('success', 'Pendaftaran berhasil! Silakan cek email Anda untuk verifikasi akun.');
 
         return redirect(route('dashboard', absolute: false));
     }
