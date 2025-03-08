@@ -62,6 +62,13 @@ class InternshipResource extends Resource
                             ->label('Tanggal Mulai')
                             ->required(),
                         
+                        Forms\Components\TextInput::make('duration')
+                            ->label('Durasi Magang')
+                            ->required()
+                            ->default('3 bulan')
+                            ->placeholder('Contoh: 3 bulan')
+                            ->maxLength(255),
+                        
                         Forms\Components\DatePicker::make('end_date')
                             ->label('Tanggal Selesai')
                             ->required()
@@ -72,7 +79,7 @@ class InternshipResource extends Resource
                             ->required()
                             ->before('start_date'),
                         
-                        Forms\Components\Textarea::make('benefits')
+                        Forms\Components\RichEditor::make('benefits')
                             ->label('Benefits')
                             ->required()
                             ->maxLength(65535)
@@ -129,6 +136,10 @@ class InternshipResource extends Resource
                 
                 Tables\Columns\TextColumn::make('location')
                     ->label('Lokasi')
+                    ->searchable(),
+                
+                Tables\Columns\TextColumn::make('duration')
+                    ->label('Durasi')
                     ->searchable(),
                 
                 Tables\Columns\TextColumn::make('deadline')

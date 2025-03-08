@@ -26,7 +26,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        // Cek apakah user sudah login di tempat lain
+        $request->authenticate();
+
+        // Cek apakah user sudah login di tempat lain setelah autentikasi berhasil
         $existingSession = DB::table('sessions')
             ->where('user_id', Auth::id())
             ->where('id', '!=', session()->getId())
@@ -39,7 +41,6 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
-        $request->authenticate();
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
@@ -50,10 +51,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Hapus semua session user dari database
+        DB::table('sessions')
+            ->where('user_id', Auth::id())
+            ->delete();
+
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

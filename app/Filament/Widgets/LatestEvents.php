@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Filament\Widgets;
+
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Widgets\TableWidget as BaseWidget;
+use App\Models\Event;
+
+class LatestEvents extends BaseWidget
+{
+    protected static ?int $sort = 3;
+    
+    protected int | string | array $columnSpan = 'full';
+    
+    public function table(Table $table): Table
+    {
+        return $table
+            ->query(
+                Event::query()
+                    ->latest()
+                    ->limit(5)
+            )
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->limit(30),
+                Tables\Columns\TextColumn::make('event_date')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('registrations_count')
+                    ->counts('registrations')
+                    ->label('Registrations'),
+            ]);
+    }
+} 

@@ -10,6 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if (auth()->check()) {
+            return redirect()->route('dashboard');
+        }
+
         $events = Event::where('is_visible', true)->get();
         $programs = Program::all();
         $anggotas = Anggota::all();

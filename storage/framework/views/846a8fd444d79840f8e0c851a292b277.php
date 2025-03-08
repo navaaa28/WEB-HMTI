@@ -2,7 +2,6 @@
     <!-- Include AOS Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Include Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- Include Glide Core and Theme CSS -->
@@ -12,14 +11,28 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/components.css')); ?>">
 
     <!-- Hero Section -->
-    <section class="bg-blue-900 text-white pt-32 pb-16 -mt-4 text-center" data-aos="fade-down">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-            <div class="mb-4">
-                <img src="<?php echo e(asset('storage/images/logo.png')); ?>" alt="Logo HMTI" class="h-40 w-40 rounded-full transition-transform duration-300 hover:scale-110">
+    <section class="bg-blue-900 text-white pt-32 pb-16 -mt-4 text-center relative overflow-hidden" data-aos="fade-down">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-900 opacity-95"></div>
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center relative z-10">
+            <div class="mb-4 transform transition-all duration-500 hover:scale-105">
+                <img src="<?php echo e(asset('storage/images/logo.png')); ?>" alt="Logo HMTI" 
+                     class="h-40 w-40 rounded-full shadow-2xl border-4 border-white/20">
             </div>
-            <h1 class="text-3xl md:text-5xl font-bold font-serif">Himpunan Mahasiswa Teknik Industri</h1>
-            <h2 class="text-xl md:text-3xl font-semibold mt-2">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
-            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light">Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.</p>
+            <h1 class="text-3xl md:text-5xl font-bold font-serif mb-2">Himpunan Mahasiswa Teknik Industri</h1>
+            <h2 class="text-xl md:text-3xl font-semibold mb-4">UNIVERSITAS TEKNOLOGI BANDUNG</h2>
+            <p class="mt-4 md:mt-6 text-lg md:text-xl font-light max-w-2xl leading-relaxed">
+                Menjadi wadah bagi mahasiswa Teknik industri untuk berkarya dan berkolaborasi.
+            </p>
+            <div class="mt-8 flex space-x-4">
+                <a href="#about" class="btn-primary">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Tentang Kami
+                </a>
+                <a href="#events" class="btn-secondary">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    Acara Terbaru
+                </a>
+            </div>
         </div>
     </section>
 
@@ -82,154 +95,155 @@
         </div>
     </section>
 
-<!-- Events Section -->
-<section id="events" class="bg-white py-12 md:py-24" data-aos="fade-up">
-    <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center bg-gradient-to-br from-indigo-900 to-purple-800 bg-clip-text text-transparent mb-8 md:mb-12 font-serif" data-aos="fade-down">Acara Terbaru</h2>
-        <div class="events-container">
-            <div class="glide">
-                <div class="glide__track" data-glide-el="track">
-                    <ul class="glide__slides">
-                        <?php $__empty_1 = true; $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <li class="glide__slide">
-                                <div class="event-card">
-                                    <!-- Gambar -->
-                                    <div class="relative h-40 md:h-48 lg:h-56">
-                                        <?php if($event->photo): ?>
-                                            <img src="<?php echo e(asset('storage/' . $event->photo)); ?>" alt="<?php echo e($event->name); ?>" class="w-full h-full object-cover rounded-t-lg">
-                                        <?php else: ?>
-                                            <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-t-lg">
-                                                <span class="text-gray-500">No Image</span>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
+    <!-- Events Section -->
+    <section id="events" class="bg-white py-12 md:py-24" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center bg-gradient-to-br from-indigo-900 to-purple-800 bg-clip-text text-transparent mb-8 md:mb-12 font-serif" data-aos="fade-down">Acara Terbaru</h2>
+            <div class="events-container">
+                <div class="glide">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            <?php $__empty_1 = true; $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <li class="glide__slide">
+                                    <div class="event-card">
+                                        <!-- Gambar -->
+                                        <div class="relative h-40 md:h-48 lg:h-56">
+                                            <?php if($event->photo): ?>
+                                                <img src="<?php echo e(asset('storage/' . $event->photo)); ?>" alt="<?php echo e($event->name); ?>" class="w-full h-full object-cover rounded-t-lg">
+                                            <?php else: ?>
+                                                <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-t-lg">
+                                                    <span class="text-gray-500">No Image</span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
 
-                                    <!-- Konten Card -->
-                                    <div class="p-4 md:p-6 flex flex-col flex-grow">
-                                        <h3 class="text-base md:text-lg font-semibold text-indigo-900 mb-2 font-serif line-clamp-2">
-                                            <?php echo e($event->name); ?>
+                                        <!-- Konten Card -->
+                                        <div class="p-4 md:p-6 flex flex-col flex-grow">
+                                            <h3 class="text-base md:text-lg font-semibold text-indigo-900 mb-2 font-serif line-clamp-2">
+                                                <?php echo e($event->name); ?>
 
-                                        </h3>
+                                            </h3>
 
-                                        <p class="text-sm md:text-base text-gray-600 line-clamp-3 flex-grow font-light">
-                                            <?php echo e($event->description); ?>
-
-                                        </p>
-
-                                        <div class="flex items-center justify-between mt-4">
-                                            <span class="px-2 md:px-3 py-1 text-xs md:text-sm rounded-full <?php echo e($event->registration_open ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'); ?>">
-                                                <?php echo e($event->registration_open ? '🟢 Dibuka' : '🔴 Ditutup'); ?>
-
-                                            </span>
-                                            <p class="text-xs md:text-sm text-gray-500">
-                                                📅 <?php echo e($event->event_date->format('d M Y')); ?>
+                                            <p class="text-sm md:text-base text-gray-600 line-clamp-3 flex-grow font-light">
+                                                <?php echo e($event->description); ?>
 
                                             </p>
-                                        </div>
 
-                                        <?php if($event->registration_open): ?>
-                                            <a href="<?php echo e(route('events.show', $event->id)); ?>" class="mt-4 bg-indigo-900 text-white px-4 py-2 rounded text-sm md:text-base text-center hover:bg-purple-800 transition duration-300">
-                                                Lihat Detail
-                                            </a>
-                                        <?php else: ?>
-                                            <button disabled class="mt-4 bg-gray-300 text-gray-600 px-4 py-2 rounded text-sm md:text-base text-center w-full cursor-not-allowed">
-                                                Ditutup
-                                            </button>
-                                        <?php endif; ?>
+                                            <div class="flex items-center justify-between mt-4">
+                                                <span class="px-2 md:px-3 py-1 text-xs md:text-sm rounded-full <?php echo e($event->registration_open ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'); ?>">
+                                                    <?php echo e($event->registration_open ? '🟢 Dibuka' : '🔴 Ditutup'); ?>
+
+                                                </span>
+                                                <p class="text-xs md:text-sm text-gray-500">
+                                                    📅 <?php echo e($event->event_date->format('d M Y')); ?>
+
+                                                </p>
+                                            </div>
+
+                                            <?php if($event->registration_open): ?>
+                                                <a href="<?php echo e(route('events.show', $event->id)); ?>" class="mt-4 bg-indigo-900 text-white px-4 py-2 rounded text-sm md:text-base text-center hover:bg-purple-800 transition duration-300">
+                                                    Lihat Detail
+                                                </a>
+                                            <?php else: ?>
+                                                <button disabled class="mt-4 bg-gray-300 text-gray-600 px-4 py-2 rounded text-sm md:text-base text-center w-full cursor-not-allowed">
+                                                    Ditutup
+                                                </button>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <li class="glide__slide">
-                                <div class="text-center py-12">
-                                    <p class="text-gray-600 text-base md:text-lg">Tidak ada acara terbaru saat ini</p>
-                                </div>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
-
-                <div class="glide__arrows" data-glide-el="controls">
-                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-                        <i class="fas fa-chevron-left text-sm md:text-base"></i>
-                    </button>
-                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-                        <i class="fas fa-chevron-right text-sm md:text-base"></i>
-                    </button>
-                </div>
-
-                <div class="glide__bullets" data-glide-el="controls[nav]">
-                    <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <button class="glide__bullet" data-glide-dir="=<?php echo e($index); ?>"></button>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Struktur Organisasi Section -->
-<section id="struktur" class="bg-gray-50 py-12 md:py-16" data-aos="fade-up">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-8 md:mb-12">
-            <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
-            <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">HIMPUNAN MAHASISWA TEKNIK INDUSTRI</h3>
-            <h4 class="text-base md:text-lg font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
-            <p class="text-sm md:text-base text-indigo-900 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
-        </div>
-
-        <div class="struktur-container">
-            <div class="glide-struktur">
-                <div class="glide__track" data-glide-el="track">
-                    <ul class="glide__slides">
-                        <?php $__currentLoopData = $anggotas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $anggota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if(in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen'])): ?>
+                                </li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <li class="glide__slide">
-                                    <div class="struktur-card p-4 md:p-6 text-center">
-                                        <div class="relative w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
-                                            <img src="<?php echo e($anggota->foto); ?>" alt="Foto <?php echo e($anggota->nama); ?>" class="w-full h-full rounded-full object-cover shadow-md">
-                                        </div>
-                                        <h3 class="text-base md:text-lg lg:text-xl font-bold font-serif text-indigo-900 mb-1"><?php echo e($anggota->nama); ?></h3>
-                                        <p class="text-sm md:text-base text-gray-600 font-light"><?php echo e($anggota->jabatan); ?></p>
+                                    <div class="text-center py-12">
+                                        <p class="text-gray-600 text-base md:text-lg">Tidak ada acara terbaru saat ini</p>
                                     </div>
                                 </li>
                             <?php endif; ?>
+                        </ul>
+                    </div>
+
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                            <i class="fas fa-chevron-left text-sm md:text-base"></i>
+                        </button>
+                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                            <i class="fas fa-chevron-right text-sm md:text-base"></i>
+                        </button>
+                    </div>
+
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <button class="glide__bullet" data-glide-dir="=<?php echo e($index); ?>"></button>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </ul>
-                </div>
-
-                <div class="glide__arrows" data-glide-el="controls">
-                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-                        <i class="fas fa-chevron-left text-sm md:text-base"></i>
-                    </button>
-                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-                        <i class="fas fa-chevron-right text-sm md:text-base"></i>
-                    </button>
-                </div>
-
-                <div class="glide__bullets" data-glide-el="controls[nav]">
-                    <?php $__currentLoopData = $anggotas->where(function($anggota) { 
-                        return in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']); 
-                    }); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $anggota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <button class="glide__bullet" data-glide-dir="=<?php echo e($index); ?>"></button>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Tombol Lihat Seluruh Anggota -->
-        <div class="text-center mt-8 md:mt-12">
-            <a href="<?php echo e(route('anggota.index')); ?>" class="interactive-button">
-                <span>
-                    <i class="fas fa-users"></i>
-                    Lihat Seluruh Anggota
-                </span>
-            </a>
+    <!-- Struktur Organisasi Section -->
+    <section id="struktur" class="bg-gray-50 py-12 md:py-16" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-8 md:mb-12">
+                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">STRUKTUR ORGANISASI</h2>
+                <h3 class="text-lg md:text-xl font-bold text-indigo-900 mb-2 font-serif" data-aos="fade-down">HIMPUNAN MAHASISWA TEKNIK INDUSTRI</h3>
+                <h4 class="text-base md:text-lg font-bold text indigo-900 mb-2 font-serif" data-aos="fade-down">UNIVERSITAS TEKNOLOGI BANDUNG</h4>
+                <p class="text-sm md:text-base text-indigo-900 font-serif" data-aos="fade-down">PERIODE 2024-2025</p>
+            </div>
+
+            <div class="struktur-container">
+                <div class="glide-struktur">
+                    <div class="glide__track" data-glide-el="track">
+                        <ul class="glide__slides">
+                            <?php $__currentLoopData = $anggotas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $anggota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if(in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen'])): ?>
+                                    <li class="glide__slide">
+                                        <div class="struktur-card p-4 md:p-6 text-center">
+                                            <div class="relative w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                                                <img src="<?php echo e($anggota->foto); ?>" alt="Foto <?php echo e($anggota->nama); ?>" class="w-full h-full rounded-full object-cover shadow-md">
+                                            </div>
+                                            <h3 class="text-base md:text-lg lg:text-xl font-bold font-serif text-indigo-900 mb-1"><?php echo e($anggota->nama); ?></h3>
+                                            <p class="text-sm md:text-base text-gray-600 font-light"><?php echo e($anggota->jabatan); ?></p>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                            <i class="fas fa-chevron-left text-sm md:text-base"></i>
+                        </button>
+                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                            <i class="fas fa-chevron-right text-sm md:text-base"></i>
+                        </button>
+                    </div>
+
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        <?php $__currentLoopData = $anggotas->where(function($anggota) { 
+                            return in_array($anggota->jabatan, ['Direktur Utama', 'Sekretaris Direktur', 'Direktur Keuangan', 'Sekretaris Umum', 'Direktur Personalia', 'Kepala Departemen']); 
+                        }); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $anggota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <button class="glide__bullet" data-glide-dir="=<?php echo e($index); ?>"></button>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Lihat Seluruh Anggota -->
+            <div class="text-center mt-8 md:mt-12">
+                <a href="<?php echo e(route('anggota.index')); ?>" class="interactive-button">
+                    <span>
+                        <i class="fas fa-users"></i>
+                        Lihat Seluruh Anggota
+                    </span>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
-<!-- Materi Section -->
-<section class="bg-gradient-to-b from-white to-gray-50 py-24" data-aos="fade-up">
+    </section>
+
+    <!-- Materi Section -->
+    <section class="bg-gradient-to-b from-white to-gray-50 py-24" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
                 <div class="mb-8 md:mb-0">
@@ -244,7 +258,7 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-chalkboard-teacher text-2xl text-indigo-800"></i>
-                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-900 to-purple-800 bg-clip-text text-transparent">PERKULIAHAN</h2>
+                            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from indigo-900 to-purple-800 bg-clip-text text-transparent">PERKULIAHAN</h2>
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-laptop-house text-2xl text-indigo-800"></i>
@@ -270,60 +284,59 @@
         </div>
     </section>
 
-
-        <!-- Tentang Kami -->
-        <section id='about' class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 font-serif mb-4 relative inline-block" data-aos="fade-down">
-                        Tentang Kami
-                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-900"></div>
-                    </h2>
+    <!-- Tentang Kami -->
+    <section id='about' class="bg-gradient-to-b from-gray-50 to-white py-24" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 font-serif mb-4 relative inline-block" data-aos="fade-down">
+                    Tentang Kami
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-900"></div>
+                </h2>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <!-- Background Pattern -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-blue-50 rounded-bl-full opacity-50"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-100 to-blue-50 rounded-tr-full opacity-50"></div>
+                
+                <!-- Logo Watermark -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5">
+                    <img src="<?php echo e(asset('storage/images/logo.png')); ?>" alt="Watermark" class="w-96 h-96">
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <!-- Background Pattern -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-blue-50 rounded-bl-full opacity-50"></div>
-                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-100 to-blue-50 rounded-tr-full opacity-50"></div>
-                    
-                    <!-- Logo Watermark -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5">
-                        <img src="<?php echo e(asset('storage/images/logo.png')); ?>" alt="Watermark" class="w-96 h-96">
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="relative z-10">
-                        <div class="prose prose-lg max-w-none">
-                            <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
-                                HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung.
-                            </p>
+                <!-- Content -->
+                <div class="relative z-10">
+                    <div class="prose prose-lg max-w-none">
+                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
+                            HMTI Universitas Teknologi Bandung merupakan himpunan mahasiswa prodi Teknik Industri yang berkedudukan di Universitas Teknik Bandung.
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mt-8">
+                            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <i class="fas fa-history text-2xl text-blue-900"></i>
+                                    <h3 class="text-xl font-bold text-blue-900">Sejarah Pendirian</h3>
+                                </div>
+                                <p class="text-gray-700">
+                                    Didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T.
+                                </p>
+                            </div>
                             
-                            <div class="grid md:grid-cols-2 gap-8 mt-8">
-                                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
-                                    <div class="flex items-center space-x-3 mb-4">
-                                        <i class="fas fa-history text-2xl text-blue-900"></i>
-                                        <h3 class="text-xl font-bold text-blue-900">Sejarah Pendirian</h3>
-                                    </div>
-                                    <p class="text-gray-700">
-                                        Didirikan pada 10 Oktober 2013 dengan ketua himpunan pertamanya, yaitu Abraham Bonggal S.T.
-                                    </p>
+                            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <i class="fas fa-crown text-2xl text-blue-900"></i>
+                                    <h3 class="text-xl font-bold text-blue-900">Kepemimpinan</h3>
                                 </div>
-                                
-                                <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md">
-                                    <div class="flex items-center space-x-3 mb-4">
-                                        <i class="fas fa-crown text-2xl text-blue-900"></i>
-                                        <h3 class="text-xl font-bold text-blue-900">Kepemimpinan</h3>
-                                    </div>
-                                    <p class="text-gray-700">
-                                        Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2024 - 2025 dipimpin oleh Direktur Utama Muhammad Dzulfikri Halim.
-                                    </p>
-                                </div>
+                                <p class="text-gray-700">
+                                    Kini dipimpin oleh Direktur Utama sejak perubahan struktur oleh Dikdik Syaeful Malik, S.T pada tahun 2017. Periode 2024 - 2025 dipimpin oleh Direktur Utama Muhammad Dzulfikri Halim.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!-- Floating Button -->
     <div class="fixed bottom-4 right-4 z-50">
