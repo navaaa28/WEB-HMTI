@@ -20,6 +20,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Support\Enums\IconSize;
 use Filament\Support\Facades\FilamentIcon;
 use App\Filament\Widgets\EventInsightsWidget;
+use App\Filament\Resources\NavigationConfig;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -33,10 +34,13 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('HMTI')
             ->brandLogo(fn () => asset('storage/images/logo.png'))
             ->colors([
-                'primary' => Color::Red, // Warna utama menjadi ungu
-                'secondary' => Color::Blue, // Warna sekunder menjadi biru
-                
+                'primary' => Color::Red,
+                'secondary' => Color::Blue,
             ])
+            ->navigationGroups(NavigationConfig::getNavigationGroups())
+            ->topNavigation(false)
+            ->sidebarCollapsibleOnDesktop()
+            ->maxContentWidth('full')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -60,8 +64,8 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-                Authenticate::class, // Middleware auth bawaan Filament
-                \App\Http\Middleware\AdminMiddleware::class, // Gunakan middleware langsung
+                Authenticate::class,
+                \App\Http\Middleware\AdminMiddleware::class,
             ])
             ->viteTheme('resources/css/filament/admin/theme.css');
     }

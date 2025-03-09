@@ -1,7 +1,7 @@
 @extends('layouts.app')
-<script src="//unpkg.com/alpinejs" defer></script>
+
 @section('content')
-<div class="mt-32">
+<div class="pt-20 md:pt-28 overflow-visible relative">
     <div class="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 py-8 sm:py-12">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Card Container -->
@@ -211,6 +211,7 @@
 </div>
 
 <!-- JavaScript untuk Menampilkan Detail Pembayaran -->
+<script src="//unpkg.com/alpinejs" defer></script>
 <script>
     function updatePaymentDetails() {
         const select = document.getElementById("payment_method");

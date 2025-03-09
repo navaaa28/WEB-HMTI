@@ -12,18 +12,18 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Events', Event::count())
-                ->description('Total number of events')
+            Stat::make('Total Acara', Event::count())
+                ->description('Jumlah seluruh acara')
                 ->descriptionIcon('heroicon-m-calendar')
                 ->color('primary'),
             
-            Stat::make('Total Registrations', Registration::count())
-                ->description('Total event registrations')
+            Stat::make('Total Pendaftaran', Registration::count())
+                ->description('Jumlah seluruh pendaftaran')
                 ->descriptionIcon('heroicon-m-user-group')
                 ->color('success'),
             
-            Stat::make('Upcoming Events', Event::where('event_date', '>', now())->count())
-                ->description('Events that haven\'t started yet')
+            Stat::make('Acara Mendatang', Event::where('event_date', '>', now())->count())
+                ->description('Acara yang belum dimulai')
                 ->descriptionIcon('heroicon-m-calendar-days')
                 ->color('warning'),
         ];

@@ -61,7 +61,7 @@
             @if ($direkturUtama)
                 <div class="flex justify-center mb-8">
                     <div class="flex flex-col items-center">
-                        <img src="{{ asset($direkturUtama->foto) }}" alt="Foto {{ $direkturUtama->nama }}" class="w-32 h-32 rounded-full mb-2 object-cover">
+                        <img src="{{ asset('storage/' . $direkturUtama->foto) }}" alt="Foto {{ $direkturUtama->nama }}" class="w-32 h-32 rounded-full mb-2 object-cover">
                         <h3 class="text-lg font-bold font-serif">{{ $direkturUtama->nama }}</h3>
                         <p class="text-sm text-gray-600 font-light">Direktur Utama</p>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="flex justify-center gap-12 mb-6">
                             @if ($kepalaDepartemen)
                                 <div class="flex flex-col items-center">
-                                    <img src="{{ asset($kepalaDepartemen->foto) }}" alt="Foto {{ $kepalaDepartemen->nama }}" class="w-24 h-24 rounded-full mb-2 object-cover">
+                                    <img src="{{ asset('storage/' . $kepalaDepartemen->foto) }}" alt="Foto {{ $kepalaDepartemen->nama }}" class="w-24 h-24 rounded-full mb-2 object-cover">
                                     <h3 class="text-lg font-bold font-serif">{{ $kepalaDepartemen->nama }}</h3>
                                     <p class="text-sm text-gray-600 font-light">Kepala Departemen</p>
                                 </div>
@@ -91,7 +91,7 @@
                             
                             @if ($sekretarisDepartemen)
                                 <div class="flex flex-col items-center">
-                                    <img src="{{ asset($sekretarisDepartemen->foto) }}" alt="Foto {{ $sekretarisDepartemen->nama }}" class="w-24 h-24 rounded-full mb-2 object-cover">
+                                    <img src="{{ asset('storage/' . $sekretarisDepartemen->foto) }}" alt="Foto {{ $sekretarisDepartemen->nama }}" class="w-24 h-24 rounded-full mb-2 object-cover">
                                     <h3 class="text-lg font-bold font-serif">{{ $sekretarisDepartemen->nama }}</h3>
                                     <p class="text-sm text-gray-600 font-light">Sekretaris Departemen</p>
                                 </div>
@@ -111,7 +111,7 @@
                             <!-- Tampilkan Kepala Divisi -->
                             @if ($kepalaDivisi)
                                 <div class="flex flex-col items-center mb-4">
-                                    <img src="{{ asset($kepalaDivisi->foto) }}" alt="Foto {{ $kepalaDivisi->nama }}" class="w-20 h-20 rounded-full mb-2 object-cover">
+                                    <img src="{{ asset('storage/' . $kepalaDivisi->foto) }}" alt="Foto {{ $kepalaDivisi->nama }}" class="w-20 h-20 rounded-full mb-2 object-cover">
                                     <h3 class="text-lg font-bold font-serif">{{ $kepalaDivisi->nama }}</h3>
                                     <p class="text-sm text-gray-600 font-light">Kepala Divisi</p>
                                 </div>
@@ -122,7 +122,7 @@
                                 @foreach ($anggotas as $anggota)
                                     @if (!in_array($anggota->jabatan, ['Kepala Departemen', 'Sekretaris Departemen', 'Kepala Divisi']))
                                         <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                                            <img src="{{ asset($anggota->foto) }}" alt="Foto {{ $anggota->nama }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                                            <img src="{{ asset('storage/' . $anggota->foto) }}" alt="Foto {{ $anggota->nama }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
                                             <h3 class="text-lg font-bold font-serif text-center">{{ $anggota->nama }}</h3>
                                             <p class="text-sm text-gray-600 font-light text-center">{{ $anggota->jabatan }}</p>
                                         </div>

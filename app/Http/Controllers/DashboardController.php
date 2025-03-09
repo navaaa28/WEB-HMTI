@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
 use App\Models\Program;
 use App\Models\Anggota;
+use App\Models\News;
 
 class DashboardController extends Controller
 {
@@ -18,8 +19,12 @@ class DashboardController extends Controller
         $registrations = $user->registrations ?? collect();
         $registrations = $user->registrations()->with('ticket')->get();
         $anggotas = Anggota::all();
+        $news = News::where('is_published', true)
+            ->orderBy('published_at', 'desc')
+            ->take(6)
+            ->get();
 
-        return view('dashboard', compact('user', 'events', 'programs', 'registrations', 'anggotas'));
+        return view('dashboard', compact('user', 'events', 'programs', 'registrations', 'anggotas', 'news'));
 
         foreach ($registrations as $registration) {
             if ($registration->status === 'approved' && !$registration->ticket) {

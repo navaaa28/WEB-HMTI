@@ -15,18 +15,18 @@ class EventInsightsWidget extends BaseWidget
         $activeRegistrations = Event::where('registration_open', true)->count();
 
         return [
-            Stat::make('Total Events', $totalEvents)
-                ->description('Total number of events')
+            Stat::make('Total Acara', $totalEvents)
+                ->description('Jumlah seluruh acara')
                 ->descriptionIcon('heroicon-m-calendar')
                 ->color('primary'),
 
-            Stat::make('Upcoming Events', $upcomingEvents)
-                ->description('Events scheduled for the future')
+            Stat::make('Acara Mendatang', $upcomingEvents)
+                ->description('Acara yang dijadwalkan')
                 ->descriptionIcon('heroicon-m-clock')
                 ->color('success'),
 
-            Stat::make('Active Registrations', $activeRegistrations)
-                ->description('Events currently accepting registrations')
+            Stat::make('Pendaftaran Aktif', $activeRegistrations)
+                ->description('Acara yang sedang menerima pendaftaran')
                 ->descriptionIcon('heroicon-m-user-plus')
                 ->color('warning'),
         ];

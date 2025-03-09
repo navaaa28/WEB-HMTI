@@ -19,6 +19,7 @@ class Internship extends Model
         'end_date',
         'duration',
         'deadline',
+        'image',
         'benefits',
         'contact_person',
         'contact_email',

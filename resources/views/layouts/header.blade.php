@@ -1,15 +1,15 @@
-<nav class="fixed top-0 left-0 right-0 z-50" x-data="{ open: false }">
-    <!-- Spacer div to prevent content jump -->
-    <div class="h-24"></div>
+<nav class="fixed top-0 left-0 right-0 z-50 bg-transparent" x-data="{ open: false, activeSubmenu: null }">
+    <!-- Spacer div to prevent content jump on mobile and desktop -->
+    <div class="h-[4.5rem] md:h-32"></div>
     
     <!-- Header Content -->
-    <div class="absolute inset-x-0 top-0 pt-6 pb-4">
-        <div class="w-[95%] max-w-5xl mx-auto bg-white shadow-xl rounded-full border border-gray-100 relative">
-            <div class="px-6">
-                <div class="flex justify-between items-center h-16 md:h-20">
+    <div class="absolute inset-x-0 top-0 py-4 md:pt-6 md:pb-4">
+        <div class="w-[95%] max-w-5xl mx-auto bg-white shadow-xl rounded-full border border-gray-100">
+            <div class="px-4 md:px-6">
+                <div class="flex justify-between items-center h-14 md:h-20">
                     <!-- Logo -->
                     <div class="flex items-center">
-                        <a href="{{ route('welcome') }}" class="flex items-center group">
+                        <a href="{{ route('public.home') }}" class="flex items-center group">
                             <img src="{{ asset('storage/images/logo.png') }}" alt="Logo HMTI" class="h-8 w-8 md:h-12 md:w-12 rounded-full shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
                             <span class="ml-2 md:ml-3 text-lg md:text-2xl font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent font-serif group-hover:from-blue-700 group-hover:to-blue-900 transition-all">
                                 HMTI
@@ -20,14 +20,14 @@
                     <!-- Desktop Menu -->
                     <div class="hidden md:flex items-center space-x-4 lg:space-x-6">
                         @guest
-                            <a href="{{ route('welcome') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('welcome') ? 'text-blue-900 after:w-full' : '' }}">
-                                Home
+                            <a href="{{ route('public.home') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('public.home') ? 'text-blue-900 after:w-full' : '' }}">
+                                Beranda
                             </a>
                             <a href="#about" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all">
                                 Tentang
                             </a>
-                            <a href="{{ route('internships') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('internships') ? 'text-blue-900 after:w-full' : '' }}">
-                                Program Magang
+                            <a href="{{ route('public.internships') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('public.internships') ? 'text-blue-900 after:w-full' : '' }}">
+                                Magang
                             </a>
                             <a href="{{ route('login') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all">
                                 Masuk
@@ -39,8 +39,8 @@
                             <a href="{{ route('dashboard') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('dashboard') ? 'text-blue-900 after:w-full' : '' }}">
                                 Dashboard
                             </a>
-                            <a href="{{ route('internships') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('internships') ? 'text-blue-900 after:w-full' : '' }}">
-                                Program Magang
+                            <a href="{{ route('public.internships') }}" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all {{ request()->routeIs('public.internships') ? 'text-blue-900 after:w-full' : '' }}">
+                                Magang
                             </a>
                             <a href="{{ route('dashboard') }}#events" class="px-2 lg:px-3 py-2 text-sm lg:text-base text-gray-700 hover:text-blue-900 font-medium transition-all relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-blue-900 after:transition-all">
                                 Acara
@@ -70,7 +70,7 @@
                                     
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="block w-full px-4 py-2 text-left text-sm lg:text-base text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all">
+                                        <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium">
                                             Keluar
                                         </button>
                                     </form>
@@ -81,7 +81,8 @@
 
                     <!-- Mobile Button -->
                     <div class="md:hidden">
-                        <button @click="open = !open" type="button" class="p-1.5 rounded-lg text-blue-900 hover:bg-blue-50 transition-all focus:outline-none">
+                        <button @click="open = !open" type="button" class="p-2 rounded-lg text-blue-900 hover:bg-blue-50 transition-all focus:outline-none">
+                            <span class="sr-only">Buka menu</span>
                             <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
@@ -93,56 +94,95 @@
                 </div>
 
                 <!-- Mobile Menu -->
-                <div class="md:hidden absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl border border-gray-100 shadow-lg z-[60]" 
+                <div class="md:hidden" 
                     x-show="open" 
-                    @click.away="open = false"
                     x-transition:enter="transition ease-out duration-200"
                     x-transition:enter-start="opacity-0 transform -translate-y-2"
                     x-transition:enter-end="opacity-100 transform translate-y-0"
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 transform translate-y-0"
-                    x-transition:leave-end="opacity-0 transform -translate-y-2">
-                    <div class="px-2 pt-2 pb-3 space-y-1">
-                        @guest
-                            <a href="{{ route('welcome') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium {{ request()->routeIs('welcome') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
-                                Home
-                            </a>
-                            <a href="#about" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium">
-                                Tentang
-                            </a>
-                            <a href="{{ route('internships') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium {{ request()->routeIs('internships') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
-                                Program Magang
-                            </a>
-                            <a href="{{ route('login') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium">
-                                Masuk
-                            </a>
-                            <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-white bg-gradient-to-r from-blue-900 to-blue-700 rounded-lg hover:shadow-lg transition-all font-medium text-center">
-                                Daftar
-                            </a>
-                        @else
-                            <div class="px-3 py-2 mb-2">
-                                <p class="text-sm font-medium text-gray-900">{{ Auth::user()->name }}</p>
+                    x-transition:leave-end="opacity-0 transform -translate-y-2"
+                    @click.away="open = false">
+                    <div class="mt-4 mx-4">
+                        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                            <div class="divide-y divide-gray-100">
+                                @guest
+                                    <a href="{{ route('public.home') }}" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all {{ request()->routeIs('public.home') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-home w-6"></i>
+                                            <span>Beranda</span>
+                                        </div>
+                                    </a>
+                                    <a href="#about" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-info-circle w-6"></i>
+                                            <span>Tentang</span>
+                                        </div>
+                                    </a>
+                                    <a href="{{ route('public.internships') }}" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all {{ request()->routeIs('public.internships') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-briefcase w-6"></i>
+                                            <span>Magang</span>
+                                        </div>
+                                    </a>
+                                    <div class="px-4 py-3 space-y-2">
+                                        <a href="{{ route('login') }}" 
+                                           class="block w-full px-4 py-2 text-center text-base font-medium text-blue-900 bg-blue-50 rounded-lg hover:bg-blue-100 transition-all">
+                                            Masuk
+                                        </a>
+                                        <a href="{{ route('register') }}" 
+                                           class="block w-full px-4 py-2 text-center text-base font-medium text-white bg-gradient-to-r from-blue-900 to-blue-700 rounded-lg hover:shadow-md transition-all">
+                                            Daftar
+                                        </a>
+                                    </div>
+                                @else
+                                    <a href="{{ route('dashboard') }}" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-tachometer-alt w-6"></i>
+                                            <span>Dashboard</span>
+                                        </div>
+                                    </a>
+                                    <a href="{{ route('public.internships') }}" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all {{ request()->routeIs('public.internships') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-briefcase w-6"></i>
+                                            <span>Magang</span>
+                                        </div>
+                                    </a>
+                                    <a href="{{ route('dashboard') }}#events" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-calendar-alt w-6"></i>
+                                            <span>Acara</span>
+                                        </div>
+                                    </a>
+                                    <a href="{{ route('registrations.index') }}" 
+                                       class="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 transition-all {{ request()->routeIs('registrations.*') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-clipboard-list w-6"></i>
+                                            <span>Registrasi Saya</span>
+                                        </div>
+                                    </a>
+                                    <div class="px-4 py-3">
+                                        <div class="flex items-center px-4 py-2 mb-3 bg-gray-50 rounded-lg">
+                                            <i class="fas fa-user w-6 text-gray-500"></i>
+                                            <span class="font-medium text-gray-900 truncate">{{ Auth::user()->name }}</span>
+                                        </div>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="w-full px-4 py-2 text-base font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-all flex items-center justify-center">
+                                                <i class="fas fa-sign-out-alt w-6"></i>
+                                                <span>Keluar</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endguest
                             </div>
-                            <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
-                                Dashboard
-                            </a>
-                            <a href="{{ route('internships') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium {{ request()->routeIs('internships') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
-                                Program Magang
-                            </a>
-                            <a href="{{ route('dashboard') }}#events" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium">
-                                Acara
-                            </a>
-                            <a href="{{ route('registrations.index') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium {{ request()->routeIs('registrations.*') ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900' : '' }}">
-                                Registrasi Saya
-                            </a>
-                            <div class="border-t border-gray-200 my-2"></div>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="block w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-900 rounded-lg transition-all font-medium">
-                                    Keluar
-                                </button>
-                            </form>
-                        @endguest
+                        </div>
                     </div>
                 </div>
             </div>

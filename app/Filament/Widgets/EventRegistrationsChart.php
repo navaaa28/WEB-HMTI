@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class EventRegistrationsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Event Registrations Overview';
+    protected static ?string $heading = 'Grafik Pendaftaran Acara';
     
     protected function getData(): array
     {
@@ -20,7 +20,7 @@ class EventRegistrationsChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Registrations',
+                    'label' => 'Pendaftaran',
                     'data' => $data->pluck('count')->toArray(),
                     'borderColor' => '#9333ea',
                     'fill' => false,

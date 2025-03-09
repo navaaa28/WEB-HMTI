@@ -19,6 +19,10 @@ class AnggotaResource extends Resource
 {
     protected static ?string $model = Anggota::class;
 
+    protected static ?string $modelLabel = 'Anggota';
+
+    protected static ?string $pluralModelLabel = 'Anggota';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Manajemen Anggota';
 
@@ -78,11 +82,15 @@ class AnggotaResource extends Resource
 
                 FileUpload::make('foto')
                     ->image()
-                    ->disk('public') // Pastikan disk public sudah dikonfigurasi
+                    ->disk('public')
                     ->required()
                     ->directory('anggotas')
                     ->imagePreviewHeight('200')
-                    ->label('Foto Anggota'),
+                    ->label('Foto Anggota')
+                    ->columnSpanFull()
+                    ->preserveFilenames()
+                    ->downloadable()
+                    ->openable(),
             ]);
     }
 

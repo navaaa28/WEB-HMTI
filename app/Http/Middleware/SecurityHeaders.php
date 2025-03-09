@@ -17,48 +17,57 @@ class SecurityHeaders
     {
         $response = $next($request);
 
-        // X-Frame-Options: Mencegah clickjacking
-        $response->headers->set('X-Frame-Options', 'SAMEORIGIN');
+        // X-Frame-Options: Mencegah clickjacking dengan kebijakan yang lebih ketat
+        $response->headers->set('X-Frame-Options', 'DENY');
 
-        // X-XSS-Protection: Mengaktifkan XSS filter browser
-        $response->headers->set('X-XSS-Protection', '1; mode=block');
+        // X-XSS-Protection dengan report-uri
+        $response->headers->set('X-XSS-Protection', '1; mode=block; report=/xss-report');
 
-        // X-Content-Type-Options: Mencegah MIME type sniffing
+        // X-Content-Type-Options
         $response->headers->set('X-Content-Type-Options', 'nosniff');
 
-        // Referrer-Policy: Mengontrol informasi referrer
-        $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
+        // Referrer-Policy yang lebih ketat
+        $response->headers->set('Referrer-Policy', 'no-referrer');
 
-        // Content-Security-Policy: Mengontrol sumber daya yang diizinkan
+        // Content-Security-Policy yang lebih komprehensif
         $response->headers->set(
             'Content-Security-Policy',
             "default-src 'self'; " .
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; " .
-            "style-src 'self' 'unsafe-inline' https:; " .
-            "img-src 'self' data: https:; " .
-            "font-src 'self' https:; " .
+            "script-src 'self' 'nonce-" . csrf_token() . "' https://cdn.jsdelivr.net https://code.jquery.com; " .
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; " .
+            "img-src 'self' data: blob: filesystem: http: https:; " .
+            "font-src 'self' https://fonts.gstatic.com; " .
             "connect-src 'self' https:; " .
-            "frame-ancestors 'none';"
+            "frame-ancestors 'none'; " .
+            "form-action 'self'; " .
+            "base-uri 'self'; " .
+            "object-src 'none'; " .
+            "upgrade-insecure-requests;"
         );
 
-        // Strict-Transport-Security: Memaksa HTTPS
-        $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+        // HSTS dengan preload
+        $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
 
-        // Permissions-Policy: Mengontrol fitur browser
+        // Permissions-Policy yang lebih komprehensif
         $response->headers->set(
             'Permissions-Policy',
-            'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()'
+            'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=(), autoplay=(), fullscreen=(self)'
         );
 
-        // Cache-Control: Mengontrol caching
+        // Cache-Control untuk mencegah caching data sensitif
         $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
-
-        // Pragma: Mencegah caching di browser lama
         $response->headers->set('Pragma', 'no-cache');
-
-        // Expires: Mencegah caching di browser lama
         $response->headers->set('Expires', '0');
+
+        // Cross-Origin-Embedder-Policy
+        $response->headers->set('Cross-Origin-Embedder-Policy', 'require-corp');
+        
+        // Cross-Origin-Opener-Policy
+        $response->headers->set('Cross-Origin-Opener-Policy', 'same-origin');
+
+        // Cross-Origin-Resource-Policy
+        $response->headers->set('Cross-Origin-Resource-Policy', 'same-origin');
 
         return $response;
     }
-} 
+}

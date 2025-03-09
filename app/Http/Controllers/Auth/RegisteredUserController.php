@@ -10,9 +10,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
@@ -36,20 +36,26 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'nim' => ['required','string', 'max:20', 'unique:'.User::class],
             'password' => ['required', 'confirmed', new StrongPassword],
+            'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
+
+        $profilePhotoPath = null;
+        if ($request->hasFile('profile_photo')) {
+            $profilePhotoPath = $request->file('profile_photo')->store('profile-photos', 'public');
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'nim' => $request->nim,
             'password' => Hash::make($request->password),
+            'profile_photo' => $profilePhotoPath,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        // Tambahkan pesan sukses
         Session::flash('success', 'Pendaftaran berhasil! Silakan cek email Anda untuk verifikasi akun.');
 
         return redirect(route('dashboard', absolute: false));

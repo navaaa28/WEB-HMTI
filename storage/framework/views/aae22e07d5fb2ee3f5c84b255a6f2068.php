@@ -11,13 +11,13 @@
                         <p class="text-gray-300">
                             Email: 
                             <a href="mailto:hmtifti@ui.ac.id" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                hmtifti@ui.ac.id
+                            hmti@utb-univ.ac.id
                             </a>
                         </p>
                     </div>
                     <div class="flex items-center space-x-2">
                         <i class="fas fa-phone text-blue-400"></i>
-                        <p class="text-gray-300">Telepon: +62 123 4567 890</p>
+                        <p class="text-gray-300">Telepon: +62 821-2618-6279</p>
                     </div>
                 </div>
             </div>
@@ -32,20 +32,14 @@
                         <i class="fab fa-instagram text-2xl group-hover:scale-110 transition-transform"></i>
                         <span class="md:hidden">Instagram</span>
                     </a>
-                    <!-- Twitter -->
-                    <a href="https://twitter.com" target="_blank" 
-                       class="flex items-center space-x-2 text-gray-300 hover:text-blue-400 transition-colors group">
-                        <i class="fab fa-twitter text-2xl group-hover:scale-110 transition-transform"></i>
-                        <span class="md:hidden">Twitter</span>
-                    </a>
                     <!-- TikTok -->
-                    <a href="https://tiktok.com" target="_blank" 
+                    <a href="https://www.tiktok.com/@hmtiutb?is_from_webapp=1&sender_device=pc" target="_blank" 
                        class="flex items-center space-x-2 text-gray-300 hover:text-blue-400 transition-colors group">
                         <i class="fab fa-tiktok text-2xl group-hover:scale-110 transition-transform"></i>
                         <span class="md:hidden">TikTok</span>
                     </a>
                     <!-- YouTube -->
-                    <a href="https://youtube.com" target="_blank" 
+                    <a href="https://youtube.com/@hmtiutb?si=TntYH3CAb48bQQXN" target="_blank" 
                        class="flex items-center space-x-2 text-gray-300 hover:text-blue-400 transition-colors group">
                         <i class="fab fa-youtube text-2xl group-hover:scale-110 transition-transform"></i>
                         <span class="md:hidden">YouTube</span>
@@ -88,7 +82,7 @@
         <!-- Copyright -->
         <div class="mt-12 pt-8 border-t border-blue-800">
             <p class="text-gray-300 text-sm text-center">
-                &copy; <?php echo e(date('Y')); ?> Himpunan Mahasiswa Teknik Industri - Universitas Teknologi Bandung. All rights reserved.
+                &copy; <?php echo e(date('Y')); ?> Himpunan Mahasiswa Teknik Industri - Universitas Teknologi Bandung. Hak Cipta Dilindungi.
             </p>
         </div>
     </div>

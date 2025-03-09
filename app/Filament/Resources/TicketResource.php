@@ -12,7 +12,7 @@ class TicketResource extends Resource
 {
     protected static ?string $model = Ticket::class;
     protected static ?string $navigationIcon = 'heroicon-o-qr-code';
-    protected static ?string $navigationLabel = 'Verifikasi QR Code';
+    protected static ?string $navigationLabel = 'QR Code Acara';
     protected static ?string $navigationGroup = 'Menu Verifikasi';
 
     public static function form(Forms\Form $form): Forms\Form

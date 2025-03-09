@@ -24,8 +24,8 @@ class StrongPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        // Minimal 12 karakter
-        if (strlen($value) < 12) {
+        // Minimal 8 karakter
+        if (strlen($value) < 8) {
             return false;
         }
 
@@ -70,7 +70,7 @@ class StrongPassword implements Rule
     public function message()
     {
         return 'Password harus memenuhi kriteria berikut:
-                - Minimal 12 karakter
+                - Minimal 8 karakter
                 - Harus mengandung huruf besar
                 - Harus mengandung huruf kecil
                 - Harus mengandung angka

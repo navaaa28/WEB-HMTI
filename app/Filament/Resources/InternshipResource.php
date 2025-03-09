@@ -79,6 +79,17 @@ class InternshipResource extends Resource
                             ->required()
                             ->before('start_date'),
                         
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Foto')
+                            ->image()
+                            ->disk('public')
+                            ->directory('internships')
+                            ->visibility('public')
+                            ->preserveFilenames()
+                            ->maxSize(1024)
+                            ->acceptedFileTypes(['image/*'])
+                            ->columnSpanFull(),
+                        
                         Forms\Components\RichEditor::make('benefits')
                             ->label('Benefits')
                             ->required()
@@ -146,6 +157,11 @@ class InternshipResource extends Resource
                     ->label('Deadline')
                     ->date('d M Y')
                     ->sortable(),
+                
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Foto')
+                    ->rounded()
+                    ->size(50),
                 
                 Tables\Columns\BadgeColumn::make('status')
                     ->label('Status')

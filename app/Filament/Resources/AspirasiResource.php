@@ -24,6 +24,8 @@ class AspirasiResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Aspirasi';
 
+    protected static ?string $navigationGroup = 'Aspirasi';
+
     protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form

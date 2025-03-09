@@ -22,8 +22,13 @@ class RegistrationResource extends Resource
     protected static ?string $model = Registration::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $navigationLabel = 'Registrasi';
-    protected static ?string $navigationGroup = 'Manajemen Event';
+    protected static ?string $navigationLabel = 'Registrasi Acara';
+
+    protected static ?string $modelLabel = 'Registrasi Acara';
+
+    protected static ?string $pluralModelLabel = 'Registrasi Acara';
+
+    protected static ?string $navigationGroup = 'Manajemen Acara';
 
     public static function form(Form $form): Form
 {
@@ -88,7 +93,7 @@ class RegistrationResource extends Resource
                 ]),
 
             \Filament\Tables\Columns\ImageColumn::make('payment_proof')
-                ->label('Bukti Pembayaran')
+                ->label('Bukti Pembayaran') 
                 ->size(100)
                 ->circular(false)
                 ->square()

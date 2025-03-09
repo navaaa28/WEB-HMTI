@@ -16,6 +16,7 @@ class LatestEvents extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
+            ->heading('Acara Terbaru')
             ->query(
                 Event::query()
                     ->latest()
@@ -23,14 +24,16 @@ class LatestEvents extends BaseWidget
             )
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nama Acara')
                     ->searchable()
                     ->limit(30),
                 Tables\Columns\TextColumn::make('event_date')
+                    ->label('Tanggal Acara')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('registrations_count')
                     ->counts('registrations')
-                    ->label('Registrations'),
+                    ->label('Jumlah Pendaftar'),
             ]);
     }
 } 
